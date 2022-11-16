@@ -31,7 +31,7 @@
 #' data(toydata)
 #' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
 #' @export
-affine_fit <- function(model="BS", fact_dep=FALSE, n_factors=3, data=data_default, st_val=0, max_iter=200, tolerance=0.1, wd=0){
+affine_fit <- function(model="BS", fact_dep=FALSE, n_factors=3, data=data_default, st_val, max_iter=200, tolerance=0.1, wd=0){
   
   if(model=="AFNS"){
     if(fact_dep==TRUE){
