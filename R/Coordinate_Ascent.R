@@ -106,7 +106,8 @@ co_asc_BSi <- function(mu_bar, x0=c(6.960591e-03, 9.017154e-03, 5.091784e-03), d
 
     if(workdir != 0){
       setwd(dir = workdir)
-      save(CA_par[1:iter_count,], "BSi_Table.RData")
+      part_l <- CA_par[1:iter_count,]
+      save(part_l, "BSi_Table.RData")
     }
 
     if (abs(nLL_BSi_uKD_CA(x0_par, delta_par, kappa_par, l_sigma_par, l_r_par, mu_bar) - neg_loglikelihood) < tol_lik | (iter_count==max_iter)){
@@ -324,7 +325,8 @@ co_asc_BSd_2F <- function(mu_bar, x0=c(2.191140e-03, -8.855686e-03), delta=c(-5.
 
     if(workdir != 0){
       setwd(dir = workdir)
-      save(CA_par[1:iter_count,], "BSd2_Table.RData")
+      part_l <- CA_par[1:iter_count,]
+      save(part_l, "BSd2_Table.RData")
     }
 
     if (abs(nLL_BSd_2F_uKD_CA(x0_par, delta_par, kappa_par, dg_l_Sigma_chol_par, odg_Sigma_chol_par, l_r_par, mu_bar) - neg_loglikelihood) < tol_lik  | (iter_count==max_iter) ){
@@ -395,7 +397,8 @@ co_asc_BSd_3F <- function(mu_bar, x0=c(2.191140e-03, -8.855686e-03, 2.711990e-02
 
     if(workdir != 0){
       setwd(dir = workdir)
-      save(CA_par[1:iter_count,], "BSd3_Table.RData")
+      part_l <- CA_par[1:iter_count,]
+      save(part_l, "BSd3_Table.RData")
     }
 
     if (abs(nLL_BSd_3F_uKD_CA(x0_par, delta_par, kappa_par, dg_l_Sigma_chol_par, odg_Sigma_chol_par, l_r_par, mu_bar) - neg_loglikelihood) < tol_lik  | (iter_count==max_iter) ){
@@ -525,7 +528,8 @@ co_asc_GMki <- function(mu_bar, x0=c(2.191140e-03, -8.855686e-03), delta=c(-5.17
 
     if(workdir != 0){
       setwd(dir = workdir)
-      save(CA_par[1:iter_count,], "GMki_Table.RData")
+      part_l <- CA_par[1:iter_count,]
+      save(part_l, "GMki_Table.RData")
     }
 
     if (abs(nLL_GMki_uKD_CA(x0_par, delta_par, kappa_par, l_gamma_par, l_sigma_par, l_r_par, mu_bar) - neg_loglikelihood) < tol_lik  | (iter_count==max_iter) ){
@@ -667,7 +671,8 @@ co_asc_GMkd <- function(mu_bar, x0=c(2.191140e-03, -8.855686e-03), delta=c(-5.17
 
     if(workdir != 0){
       setwd(dir = workdir)
-      save(CA_par[1:iter_count,], "GMkd_Table.RData")
+      part_l <- CA_par[1:iter_count,]
+      save(part_l[1:iter_count,], "GMkd_Table.RData")
     }
 
     if (abs(nLL_GMkd_uKD_CA(x0_par, delta_par, kappa_par, l_gamma_par, dg_l_Sigma_chol_par, odg_Sigma_chol_par, l_r_par, mu_bar) - neg_loglikelihood) < tol_lik  | (iter_count==max_iter) ){
@@ -789,7 +794,8 @@ co_asc_AFNSi <- function(mu_bar, x0=c(1.091714e-02, 1.002960e-02, -5.990785e-04)
 
     if(workdir != 0){
       setwd(dir = workdir)
-      save(CA_par[1:iter_count,], "AFNSi_Table.RData")
+      part_l <- CA_par[1:iter_count,]
+      save(part_l[1:iter_count,], "AFNSi_Table.RData")
     }
 
     if (abs(nLL_AFNSi_uKD_CA(x0_par, delta_par, kappa_par, l_sigma_par, l_r_par, mu_bar) - neg_loglikelihood) < tol_lik | (iter_count==max_iter) ){
@@ -930,7 +936,8 @@ co_asc_AFNSd <- function(mu_bar, x0=c(9.582516e-03, 1.094110e-02, -1.503155e-03)
 
     if(workdir != 0){
       setwd(dir = workdir)
-      save(CA_par[1:iter_count,], "AFNSd_Table.RData")
+      part_l <- CA_par[1:iter_count,]
+      save(part_l[1:iter_count,], "AFNSd_Table.RData")
     }
 
     if(abs(nLL_AFNSd_uKD_CA(x0_par, delta_par, kappa_par, dg_l_Sigma_chol_par, odg_Sigma_chol_par, l_r_par, mu_bar) - neg_loglikelihood) < tol_lik | (iter_count==max_iter) ){
@@ -1056,7 +1063,8 @@ co_asc_AFGNSi <- function(mu_bar, x0=c(1.091714e-02, 1.002960e-02, 5.990785e-04,
 
     if(workdir != 0){
       setwd(dir = workdir)
-      save(CA_par[1:iter_count,], "AFGNSi_Table.RData")
+      part_l <- CA_par[1:iter_count,]
+      save(part_l[1:iter_count,], "AFGNSi_Table.RData")
     }
 
     if (abs(nLL_AFGNSi_uKD_CA(x0_par, delta_par, kappa_par, l_sigma_par, l_r_par, mu_bar) - neg_loglikelihood) < tol_lik | (iter_count==max_iter) ){
@@ -1204,7 +1212,8 @@ co_asc_AFGNSd <- function(mu_bar, x0=c(1.091714e-02, 1.002960e-02, 5.990785e-04,
 
     if(workdir != 0){
       setwd(dir = workdir)
-      save(CA_par[1:iter_count,], "AFGNSd_Table.RData")
+      part_l <- CA_par[1:iter_count,]
+      save(part_l[1:iter_count,], "AFGNSd_Table.RData")
     }
 
     if(abs(nLL_AFGNSd_uKD_CA(x0_par, delta_par, kappa_par, dg_l_Sigma_chol_par, odg_Sigma_chol1_par, odg_Sigma_chol2_par, l_r_par, mu_bar) - neg_loglikelihood) < tol_lik | (iter_count==max_iter) ){
@@ -1330,7 +1339,8 @@ co_asc_AFUNSi <- function(mu_bar, x0=c(1.091714e-02, 1.002960e-02, -5.990785e-04
 
     if(workdir != 0){
       setwd(dir = workdir)
-      save(CA_par[1:iter_count,], "AFUNSi_Table.RData")
+      part_l <- CA_par[1:iter_count,]
+      save(part_l[1:iter_count,], "AFUNSi_Table.RData")
     }
 
     if (abs(nLL_AFUNSi_uKD_CA(x0_par, delta_par, kappa_par, l_sigma_par, l_r_par, mu_bar) - neg_loglikelihood) < tol_lik | (iter_count==max_iter) ){
@@ -1456,7 +1466,8 @@ co_asc_AFRNSi <- function(mu_bar, x0=c(1.091714e-02, 1.002960e-02), delta=-8.304
 
     if(workdir != 0){
       setwd(dir = workdir)
-      save(CA_par[1:iter_count,], "AFRNSi_Table.RData")
+      part_l <- CA_par[1:iter_count,]
+      save(part_l[1:iter_count,], "AFRNSi_Table.RData")
     }
 
     if (abs(nLL_AFRNSi_uKD_CA(x0_par, delta_par, kappa_par, l_sigma_par, l_r_par, mu_bar) - neg_loglikelihood) < tol_lik | (iter_count==max_iter) ){
@@ -1590,7 +1601,8 @@ co_asc_CIR <- function(mu_bar, x0=c(1.611524e-03, 5.763081e-03, 1.208483e-02), d
 
     if(workdir != 0){
       setwd(dir = workdir)
-      save(CA_par[1:iter_count,], "CIR_Table.RData")
+      part_l <- CA_par[1:iter_count,]
+      save(part_l[1:iter_count,], "CIR_Table.RData")
     }
 
     if (abs(nLL_CIR_uKD_CA_bd(l_x0_par, delta_par, l_kappa_par, l_sigma_par, l_theta_P_par, l_r_par, mu_bar) - neg_loglikelihood) < tol_lik | (iter_count==max_iter) ){
