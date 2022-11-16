@@ -1,7 +1,7 @@
 
 # AffineMortality
 
-The `AffineMortality` R package implements ...
+The `AffineMortality` R package implements univariate Kalman Filter-based routines (Koopman and Durbin (2000)) for the parameter estimation, projection and analysis of the goodness of fit of affine mortality models.
 
 Key features of the package:
 
