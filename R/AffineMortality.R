@@ -32,102 +32,66 @@
 #' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
 #' @export
 affine_fit <- function(model="BS", fact_dep=FALSE, n_factors=3, data=data_default, st_val=0, max_iter=200, tolerance=0.1, wd=0){
-
+  
   if(model=="AFNS"){
     if(fact_dep==TRUE){
-      if(st_val==0){ # - then use default starting value
-        st_val <- sv_default$AFNSd
-      }
       fit <- co_asc_AFNSd(mu_bar = data, x0=st_val$x0, delta=st_val$delta, kappa=st_val$kappa, sigma_dg = st_val$sigma_dg, Sigma_cov = st_val$Sigma_cov, r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
       return(list(model=model, fit=fit, n.parameters=16, AIC=AIC_BIC(fit$log_lik, 16, (nrow(data) * ncol(data)))$AIC, BIC=AIC_BIC(fit$log_lik, 16, (nrow(data) * ncol(data)))$BIC))
     }
     else{
-      if(st_val==0){ # - then use default starting value
-        st_val <- sv_default$AFNSi
-      }
       fit <- co_asc_AFNSi(mu_bar = data, x0=st_val$x0, delta=st_val$delta, kappa=st_val$kappa, sigma = st_val$sigma, r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
       return(list(model=model, fit=fit, n.parameters=13, AIC=AIC_BIC(fit$log_lik, 13, (nrow(data) * ncol(data)))$AIC, BIC=AIC_BIC(fit$log_lik, 13, (nrow(data) * ncol(data)))$BIC))
     }
   }else{
     if(model=="BS"){
       if(fact_dep==TRUE){
-          if(n_factors==2){
-            if(st_val==0){
-              st_val <- list(x0=sv_default$BSd$x0[1:2], delta=sv_default$BSd$delta[1:3], kappa=sv_default$BSd$kappa[1:2], sigma_dg=sv_default$BSd$sigma_dg[1:2], Sigma_cov=sv_default$BSd$Sigma_cov[1], r=c(sv_default$BSd$r1, sv_default$BSd$r2, sv_default$BSd$rc)) # - change in order to take into account the number of factors
-            }
+        if(n_factors==2){
           fit <- co_asc_BSd_2F(mu_bar = data, x0=st_val$x0, delta=st_val$delta, kappa=st_val$kappa, sigma_dg = st_val$sigma_dg, Sigma_cov = st_val$Sigma_cov, r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
           return(list(model=model, fit=fit, n.parameters=13, AIC=AIC_BIC(fit$log_lik, 13, (nrow(data) * ncol(data)))$AIC, BIC=AIC_BIC(fit$log_lik, 13, (nrow(data) * ncol(data)))$BIC))
-          } else{
-            if(st_val==0){
-              st_val <- sv_default$BSd # - change in order to take into account the number of factors
+        } else{
+          fit <- co_asc_BSd_3F(mu_bar = data, x0=st_val$x0, delta=st_val$delta, kappa=st_val$kappa, sigma_dg = st_val$sigma_dg, Sigma_cov = st_val$Sigma_cov, r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
+          return(list(model=model, fit=fit, n.parameters=21, AIC=AIC_BIC(fit$log_lik, 21, (nrow(data) * ncol(data)))$AIC, BIC=AIC_BIC(fit$log_lik, 21, (nrow(data) * ncol(data)))$BIC))
+        }
+      }else{ #i.e. factor independence
+        fit <- co_asc_BSi(mu_bar = data, x0=st_val$x0[1:n_factors], delta=st_val$delta[1:n_factors], kappa=st_val$kappa[1:n_factors], sigma = st_val$sigma[1:n_factors], r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
+        return(list(model=model, fit=fit, n.parameters=(3 + n_factors*4), AIC=AIC_BIC(fit$log_lik, (3 + n_factors*4), (nrow(data) * ncol(data)))$AIC, BIC=AIC_BIC(fit$log_lik, (3 + n_factors*4), (nrow(data) * ncol(data)))$BIC))
+      }}else{
+        if(model=="CIR"){
+          fit <- co_asc_CIR(mu_bar = mu_bar, x0=st_val$x0, delta=st_val$delta, kappa=st_val$kappa, sigma=st_val$sigma, theta_P=st_val$theta_P, r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
+          return(list(model=model, fit=fit, n.parameters=(3 + n_factors*5), AIC=AIC_BIC(fit$log_lik, (3 + n_factors*5), (nrow(data) * ncol(data)))$AIC, BIC=AIC_BIC(fit$log_lik, (3 + n_factors*5), (nrow(data) * ncol(data)))$BIC))
+        }else{
+          if(model=="AFUNS"){
+            if(fact_dep==TRUE){
+              fit <- co_asc_AFUNSd(mu_bar = data, x0=st_val$x0, delta=st_val$delta, kappa=st_val$kappa, sigma_dg = st_val$sigma_dg, Sigma_cov = st_val$Sigma_cov, r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
+              return(list(model=model, fit=fit, n.parameters=18, AIC=AIC_BIC(fit$log_lik, 18, (nrow(data) * ncol(data)))$AIC, BIC=AIC_BIC(fit$log_lik, 18, (nrow(data) * ncol(data)))$BIC))
+            }else{
+              fit <- co_asc_AFUNSi(mu_bar = data, x0=st_val$x0, delta=st_val$delta, kappa=st_val$kappa, sigma = st_val$sigma, r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
+              return(list(model=model, fit=fit, n.parameters=15, AIC=AIC_BIC(fit$log_lik, 15, (nrow(data) * ncol(data)))$AIC, BIC=AIC_BIC(fit$log_lik, 15, (nrow(data) * ncol(data)))$BIC))
+            }}else{
+              if(model=="AFRNS"){
+                if(fact_dep==TRUE){
+                  fit <- co_asc_AFRNSd(mu_bar = data, x0=st_val$x0, delta=st_val$delta, kappa=st_val$kappa, sigma_dg = st_val$sigma_dg, Sigma_cov = st_val$Sigma_cov, r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
+                  return(list(model=model, fit=fit, n.parameters=13, AIC=AIC_BIC(fit$log_lik, 13, (nrow(data) * ncol(data)))$AIC, BIC=AIC_BIC(fit$log_lik, 13, (nrow(data) * ncol(data)))$BIC))
+                }else{
+                  fit <- co_asc_AFRNSi(mu_bar = data, x0=st_val$x0, delta=st_val$delta, kappa=st_val$kappa, sigma = st_val$sigma, r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
+                  return(list(model=model, fit=fit, n.parameters=10, AIC=AIC_BIC(fit$log_lik, 10, (nrow(data) * ncol(data)))$AIC, BIC=AIC_BIC(fit$log_lik, 10, (nrow(data) * ncol(data)))$BIC))
+                }
+              }else{
+                if(model=="GMk"){
+                  if(fact_dep==TRUE){
+                    fit <- co_asc_GMkd(mu_bar = data, x0=st_val$x0, delta=st_val$delta, kappa=st_val$kappa, gamma=st_val$gamma, sigma_dg = st_val$sigma_dg, Sigma_cov = st_val$Sigma_cov, r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
+                    return(list(model=model, fit=fit, n.parameters=13, AIC=AIC_BIC(fit$log_lik, 13, (nrow(data) * ncol(data)))$AIC, BIC=AIC_BIC(fit$log_lik, 13, (nrow(data) * ncol(data)))$BIC))
+                  }else{
+                    fit <- co_asc_GMki(mu_bar = data, x0=st_val$x0, delta=st_val$delta, kappa=st_val$kappa, sigma = st_val$sigma, r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
+                    return(list(model=model, fit=fit, n.parameters=11, AIC=AIC_BIC(fit$log_lik, 11, (nrow(data) * ncol(data)))$AIC, BIC=AIC_BIC(fit$log_lik, 11, (nrow(data) * ncol(data)))$BIC))
+                  }
+                }
+              }
+              
+              
             }
-            fit <- co_asc_BSd_3F(mu_bar = data, x0=st_val$x0, delta=st_val$delta, kappa=st_val$kappa, sigma_dg = st_val$sigma_dg, Sigma_cov = st_val$Sigma_cov, r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
-            return(list(model=model, fit=fit, n.parameters=21, AIC=AIC_BIC(fit$log_lik, 21, (nrow(data) * ncol(data)))$AIC, BIC=AIC_BIC(fit$log_lik, 21, (nrow(data) * ncol(data)))$BIC))
-          }
-        }else{ #i.e. factor independence
-            if(st_val==0){
-              st_val <- sv_default$BSi
-            }
-            fit <- co_asc_BSi(mu_bar = data, x0=st_val$x0[1:n_factors], delta=st_val$delta[1:n_factors], kappa=st_val$kappa[1:n_factors], sigma = st_val$sigma[1:n_factors], r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
-            return(list(model=model, fit=fit, n.parameters=(3 + n_factors*4), AIC=AIC_BIC(fit$log_lik, (3 + n_factors*4), (nrow(data) * ncol(data)))$AIC, BIC=AIC_BIC(fit$log_lik, (3 + n_factors*4), (nrow(data) * ncol(data)))$BIC))
-        }}else{
-       if(model=="CIR"){
-         if(st_val==0){
-           st_val <- sv_default$CIR
-         }
-         fit <- co_asc_CIR(mu_bar = mu_bar, x0=st_val$x0, delta=st_val$delta, kappa=st_val$kappa, sigma=st_val$sigma, theta_P=st_val$theta_P, r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
-         return(list(model=model, fit=fit, n.parameters=(3 + n_factors*5), AIC=AIC_BIC(fit$log_lik, (3 + n_factors*5), (nrow(data) * ncol(data)))$AIC, BIC=AIC_BIC(fit$log_lik, (3 + n_factors*5), (nrow(data) * ncol(data)))$BIC))
-       }else{
-         if(model=="AFUNS"){
-           if(fact_dep==TRUE){
-             if(st_val==0){
-             st_val <- sv_default$AFUNSd
-             }
-             fit <- co_asc_AFUNSd(mu_bar = data, x0=st_val$x0, delta=st_val$delta, kappa=st_val$kappa, sigma_dg = st_val$sigma_dg, Sigma_cov = st_val$Sigma_cov, r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
-             return(list(model=model, fit=fit, n.parameters=18, AIC=AIC_BIC(fit$log_lik, 18, (nrow(data) * ncol(data)))$AIC, BIC=AIC_BIC(fit$log_lik, 18, (nrow(data) * ncol(data)))$BIC))
-           }else{
-             if(st_val==0){
-               st_val <- sv_default$AFUNSi
-             }
-             fit <- co_asc_AFUNSi(mu_bar = data, x0=st_val$x0, delta=st_val$delta, kappa=st_val$kappa, sigma = st_val$sigma, r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
-             return(list(model=model, fit=fit, n.parameters=15, AIC=AIC_BIC(fit$log_lik, 15, (nrow(data) * ncol(data)))$AIC, BIC=AIC_BIC(fit$log_lik, 15, (nrow(data) * ncol(data)))$BIC))
-           }}else{
-             if(model=="AFRNS"){
-               if(fact_dep==TRUE){
-                 if(st_val==0){
-                   st_val <- sv_default$AFRNSd
-                 }
-                 fit <- co_asc_AFRNSd(mu_bar = data, x0=st_val$x0, delta=st_val$delta, kappa=st_val$kappa, sigma_dg = st_val$sigma_dg, Sigma_cov = st_val$Sigma_cov, r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
-                 return(list(model=model, fit=fit, n.parameters=13, AIC=AIC_BIC(fit$log_lik, 13, (nrow(data) * ncol(data)))$AIC, BIC=AIC_BIC(fit$log_lik, 13, (nrow(data) * ncol(data)))$BIC))
-               }else{
-                 if(st_val==0){
-                   st_val <- sv_default$AFRNSi
-                 }
-                 fit <- co_asc_AFRNSi(mu_bar = data, x0=st_val$x0, delta=st_val$delta, kappa=st_val$kappa, sigma = st_val$sigma, r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
-                 return(list(model=model, fit=fit, n.parameters=10, AIC=AIC_BIC(fit$log_lik, 10, (nrow(data) * ncol(data)))$AIC, BIC=AIC_BIC(fit$log_lik, 10, (nrow(data) * ncol(data)))$BIC))
-               }
-             }else{
-             if(model=="GMk"){
-               if(fact_dep==TRUE){
-                 if(st_val==0){
-                   st_val <- sv_default$GMkd
-                 }
-                 fit <- co_asc_GMkd(mu_bar = data, x0=st_val$x0, delta=st_val$delta, kappa=st_val$kappa, gamma=st_val$gamma, sigma_dg = st_val$sigma_dg, Sigma_cov = st_val$Sigma_cov, r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
-                 return(list(model=model, fit=fit, n.parameters=13, AIC=AIC_BIC(fit$log_lik, 13, (nrow(data) * ncol(data)))$AIC, BIC=AIC_BIC(fit$log_lik, 13, (nrow(data) * ncol(data)))$BIC))
-               }else{
-                 if(st_val==0){
-                   st_val <- sv_default$GMki
-                 }
-                 fit <- co_asc_GMki(mu_bar = data, x0=st_val$x0, delta=st_val$delta, kappa=st_val$kappa, sigma = st_val$sigma, r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
-                 return(list(model=model, fit=fit, n.parameters=11, AIC=AIC_BIC(fit$log_lik, 11, (nrow(data) * ncol(data)))$AIC, BIC=AIC_BIC(fit$log_lik, 11, (nrow(data) * ncol(data)))$BIC))
-               }
-             }
-           }
-
-
-         }
-         }
-   }}}
+        }
+      }}}
 
 
 #======================== - Filtering distribution - ===================================
@@ -151,15 +115,9 @@ affine_fit <- function(model="BS", fact_dep=FALSE, n_factors=3, data=data_defaul
 xfilter <- function(model="BS", fact_dep=FALSE, n_factors=3, parameters=0, data=data_default){
   if(model=="AFNS"){
     if(fact_dep==TRUE){
-      if(parameters==0){ # - then use default starting value
-        parameters <- sv_default$AFNSd
-      }
       filter <- KF_AFNSd_uKD(x0=parameters$x0, delta=parameters$delta, kappa=parameters$kappa, sigma_dg = parameters$sigma_dg, Sigma_cov = parameters$Sigma_cov, r=c(parameters$r1, parameters$r2, parameters$rc), mu_bar=data)
       return(filter)
     } else{
-      if(parameters==0){
-        parameters <- sv_default$AFNSi
-      }
       filter <- KF_AFNSi_uKD(x0=parameters$x0, delta=parameters$delta, kappa=parameters$kappa, sigma = parameters$sigma, r=c(parameters$r1, parameters$r2, parameters$rc), mu_bar=data)
       return(filter)
     }
