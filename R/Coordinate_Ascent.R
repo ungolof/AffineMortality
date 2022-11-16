@@ -333,7 +333,7 @@ co_asc_BSd_2F <- function(mu_bar, x0=c(2.191140e-03, -8.855686e-03), delta=c(-5.
       # - Update log-likelihood
       neg_loglikelihood <- nLL_BSd_2F_uKD_CA(x0_par, delta_par, kappa_par, dg_l_Sigma_chol_par, odg_Sigma_chol_par, l_r_par, mu_bar)
 
-      print(paste("log_lik", round(CA_par[iter_count, length(c(x0, delta, kappa, sigma, r))+1],2)))
+      print(paste("log_lik", round(CA_par[iter_count, length(c(x0, delta, kappa, sigma_dg, Sigma_cov, r))+1],2)))
       print(paste(iter_count, "% iteration"))
       print(paste("---------------------------------"))
 
@@ -404,7 +404,7 @@ co_asc_BSd_3F <- function(mu_bar, x0=c(2.191140e-03, -8.855686e-03, 2.711990e-02
       # - Update log-likelihood
       neg_loglikelihood <- nLL_BSd_3F_uKD_CA(x0_par, delta_par, kappa_par, dg_l_Sigma_chol_par, odg_Sigma_chol_par, l_r_par, mu_bar)
 
-      print(paste("log_lik", round(CA_par[iter_count, length(c(x0, delta, kappa, sigma, r))+1],2)))
+      print(paste("log_lik", round(CA_par[iter_count, length(c(x0, delta, kappa, sigma_dg, Sigma_cov, r))+1],2)))
       print(paste(iter_count, "% iteration"))
       print(paste("---------------------------------"))
 
