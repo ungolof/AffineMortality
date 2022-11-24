@@ -227,6 +227,18 @@ A_CIR <- function(T, theta_Q, sigma, delta){
   return(value)
 }
 
+### - Same B_CIR as before, but using ^0.5 instead of sqrt() for computational reasons
+B_CIR <- function(T, sigma, delta){
+  B <- 2 * (exp(T * ((delta ^ 2) + 2 * (sigma ^ 2))^0.5) - 1) / ((delta + ((delta ^ 2) + 2 * (sigma ^ 2))^0.5) * (exp(T * ((delta ^ 2) + 2 * (sigma ^ 2))^0.5) - 1) + 2 * ((delta ^ 2) + 2 * (sigma ^ 2))^0.5) / T
+  return(B)
+}
+
+B_CIR <- function(T, sigma, delta){
+  B <- 2 * (exp(T * ((delta ^ 2) + 2 * (sigma ^ 2))^0.5) - 1) / ((delta + ((delta ^ 2) + 2 * (sigma ^ 2))^0.5) * (exp(T * ((delta ^ 2) + 2 * (sigma ^ 2))^0.5) - 1) + 2 * ((delta ^ 2) + 2 * (sigma ^ 2))^0.5) / T
+  return(B)
+}
+
+
 
 # - Makeham
 B_GMki <- function(T,delta, gamma){
