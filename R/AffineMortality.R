@@ -32,7 +32,7 @@
 #' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
 #' @export
 affine_fit <- function(model="BS", fact_dep=FALSE, n_factors=3, data=data_default, st_val, max_iter=200, tolerance=0.1, wd=0){
-  
+
   if(model=="AFNS"){
     if(fact_dep==TRUE){
       fit <- co_asc_AFNSd(mu_bar = data, x0=st_val$x0, delta=st_val$delta, kappa=st_val$kappa, sigma_dg = st_val$sigma_dg, Sigma_cov = st_val$Sigma_cov, r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
@@ -57,7 +57,7 @@ affine_fit <- function(model="BS", fact_dep=FALSE, n_factors=3, data=data_defaul
         return(list(model=model, fit=fit, n.parameters=(3 + n_factors*4), AIC=AIC_BIC(fit$log_lik, (3 + n_factors*4), (nrow(data) * ncol(data)))$AIC, BIC=AIC_BIC(fit$log_lik, (3 + n_factors*4), (nrow(data) * ncol(data)))$BIC))
       }}else{
         if(model=="CIR"){
-          fit <- co_asc_CIR(mu_bar = mu_bar, x0=st_val$x0, delta=st_val$delta, kappa=st_val$kappa, sigma=st_val$sigma, theta_P=st_val$theta_P, r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
+          fit <- co_asc_CIR(mu_bar = data, x0=st_val$x0, delta=st_val$delta, kappa=st_val$kappa, sigma=st_val$sigma, theta_P=st_val$theta_P, r=c(st_val$r1, st_val$r2, st_val$rc), max_iter=max_iter, tol_lik=tolerance, workdir=wd)
           return(list(model=model, fit=fit, n.parameters=(3 + n_factors*5), AIC=AIC_BIC(fit$log_lik, (3 + n_factors*5), (nrow(data) * ncol(data)))$AIC, BIC=AIC_BIC(fit$log_lik, (3 + n_factors*5), (nrow(data) * ncol(data)))$BIC))
         }else{
           if(model=="AFUNS"){
@@ -87,8 +87,8 @@ affine_fit <- function(model="BS", fact_dep=FALSE, n_factors=3, data=data_defaul
                   }
                 }
               }
-              
-              
+
+
             }
         }
       }}}
@@ -134,7 +134,7 @@ xfilter <- function(model="BS", fact_dep=FALSE, n_factors=3, parameters, data=da
       } else{ # - it is the Blackburn-Sherris model with independent factors
         filter <- KF_BSi_uKD(x0=parameters$x0[1:n_factors], delta=parameters$delta[1:n_factors], kappa=parameters$kappa[1:n_factors], sigma = parameters$sigma[1:n_factors], r=c(parameters$r1, parameters$r2, parameters$rc), mu_bar=data)
         return(filter)
-        
+
       }
     } else{
       if(model=="CIR"){
