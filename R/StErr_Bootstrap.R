@@ -244,7 +244,7 @@ CovEst_BS_BSi <- function(x0, delta, kappa, sigma, r, mu_bar, n_BS=500, t_ex = 4
   cov_pe <- cov(par_table)
   serr_pe <- sqrt(diag(cov_pe))
 
-  return(list(Par_Table=par_table, Cov = cov_pe, St.err = serr_pe))
+  return(list(Par_Table=par_table, Cov_par_est = cov_pe, St_err = serr_pe))
 }
 
 
@@ -513,7 +513,7 @@ CovEst_BS_BSd_2F <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar, n
   cov_pe <- cov(par_table)
   serr_pe <- sqrt(diag(cov_pe))
 
-  return(list(Par_Table=par_table, Cov = cov_pe, St.err = serr_pe))
+  return(list(Par_Table=par_table, Cov_par_est = cov_pe, St_err = serr_pe))
 }
 
 
@@ -780,7 +780,7 @@ CovEst_BS_BSd_3F <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar, n
   cov_pe <- cov(par_table)
   serr_pe <- sqrt(diag(cov_pe))
 
-  return(list(Par_Table=par_table, Cov = cov_pe, St.err = serr_pe))
+  return(list(Par_Table=par_table, Cov_par_est = cov_pe, St_err = serr_pe))
 }
 
 #================================= - Gompertz - Makeham - ===================
@@ -1017,7 +1017,7 @@ CovEst_BS_GMki <- function(x0, delta, kappa, gamma, sigma, r, mu_bar, n_BS=500, 
   cov_pe <- cov(par_table)
   serr_pe <- sqrt(diag(cov_pe))
 
-  return(list(Par_Table=par_table, Cov = cov_pe, St.err = serr_pe))
+  return(list(Par_Table=par_table, Cov_par_est = cov_pe, St_err = serr_pe))
 }
 
 #============================ - AFNS model with independent factors - ===================
@@ -1242,7 +1242,7 @@ CovEst_BS_AFNSi <- function(x0, delta, kappa, sigma, r, mu_bar, n_BS=500, t_ex =
   cov_pe <- cov(par_table)
   serr_pe <- sqrt(diag(cov_pe))
 
-  return(list(Par_Table=par_table, Cov = cov_pe, St.err = serr_pe))
+  return(list(Par_Table=par_table, Cov_par_est = cov_pe, St_err = serr_pe))
 }
 
 
@@ -1509,7 +1509,7 @@ CovEst_BS_AFNSd <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar, n_
   cov_pe <- cov(par_table)
   serr_pe <- sqrt(diag(cov_pe))
 
-  return(list(Par_Table=par_table, Cov = cov_pe, St.err = serr_pe))
+  return(list(Par_Table=par_table, Cov_par_est = cov_pe, St_err = serr_pe))
 }
 
 
@@ -1750,7 +1750,7 @@ CovEst_BS_CIR <- function(x0, delta, kappa, sigma, theta_P, r, mu_bar, n_BS=500,
   cov_pe <- cov(par_table)
   serr_pe <- sqrt(diag(cov_pe))
 
-  return(list(Par_Table=par_table, Cov = cov_pe, St.err = serr_pe))
+  return(list(Par_Table=par_table, Cov_par_est = cov_pe, St_err = serr_pe))
 }
 
 
