@@ -460,7 +460,7 @@ CovEst_BS_BSd_2F <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar, n
 
   # - 4) Parameter estimation
   ## - 4.1) Get filtered estimates
-  Filtering <- KF_BSd_2F_uKD(x0, delta, kappa, sigma_dg, Sigma_cov, r)
+  Filtering <- KF_BSd_2F_uKD(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar=mu_bar)
   X_t_fil <- Filtering$X_t
   X_t_c_fil <- Filtering$X_t_c
   S_t_fil <- Filtering$S_t
@@ -727,7 +727,7 @@ CovEst_BS_BSd_3F <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar, n
 
   # - 4) Parameter estimation
   ## - 4.1) Get filtered estimates
-  Filtering <- KF_BSd_3F_uKD(x0, delta, kappa, sigma_dg, Sigma_cov, r)
+  Filtering <- KF_BSd_3F_uKD(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar=mu_bar)
   X_t_fil <- Filtering$X_t
   X_t_c_fil <- Filtering$X_t_c
   S_t_fil <- Filtering$S_t
@@ -1194,7 +1194,7 @@ CovEst_BS_AFNSi <- function(x0, delta, kappa, sigma, r, mu_bar, n_BS=500, t_ex =
 
   # - 4) Parameter estimation
   ## - 4.1) Get filtered estimates
-  Filtering <- KF_AFNSi_uKD(x0, delta, kappa, sigma, r)
+  Filtering <- KF_AFNSi_uKD(x0, delta, kappa, sigma, r, mu_bar=mu_bar)
   X_t_fil <- Filtering$X_t
   X_t_c_fil <- Filtering$X_t_c
   S_t_fil <- Filtering$S_t
@@ -1455,7 +1455,7 @@ CovEst_BS_AFNSd <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar, n_
 
   # - 4) Parameter estimation
   ## - 4.1) Get filtered estimates
-  Filtering <- KF_AFNSd_uKD(x0, delta, kappa, sigma_dg, Sigma_cov, r)
+  Filtering <- KF_AFNSd_uKD(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar=mu_bar)
   X_t_fil <- Filtering$X_t
   X_t_c_fil <- Filtering$X_t_c
   S_t_fil <- Filtering$S_t
