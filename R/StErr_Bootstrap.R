@@ -719,11 +719,12 @@ co_asc_BSd_3F_BS <- function(mu_bar, x0, delta, kappa, sigma_dg, Sigma_cov, r, m
 CovEst_BS_BSd_3F <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar, n_BS=500, t_ex = 4, max_it=200, tolerance_lev=0.1, workdir=0){
   n_ages <- nrow(mu_bar)
   n_years <- ncol(mu_bar)
+  n_factors <- length(kappa)
 
   par_table <- matrix(NA, n_BS, length(c(delta, kappa, sigma_dg, Sigma_cov, r)))
   colnames(par_table) <- c("delta_11", 'delta_21', 'delta_22', 'delta_31', 'delta_32', 'delta_33', sprintf("kappa_%d", c(1:n_factors)), 'sigma_11', 'sigma_21', 'sigma_22', 'sigma_31', 'sigma_32', 'sigma_33', c("r1", "r2", "rc"))
   res_table <- matrix(NA, n_ages, n_years)
-  n_factors <- length(kappa)
+
 
   # - 4) Parameter estimation
   ## - 4.1) Get filtered estimates
@@ -1201,7 +1202,7 @@ CovEst_BS_AFNSi <- function(x0, delta, kappa, sigma, r, mu_bar, n_BS=500, t_ex =
   S_t_c_fil <- Filtering$S_t_c
 
   ## - 4.2) Get smoothed estimate of x0
-  Smoothing <- RTS_sm_bas(X_t_fil, X_t_c_fil, S_t_fil, S_t_c_fil, kappa, n_years )
+  Smoothing <- RTS_sm_bas(X_t_fil, X_t_c_fil, S_t_fil, S_t_c_fil, kappa, n_years)
   X_t_sm <- Smoothing$X_t_sm[,1]
   S_t_sm <- Smoothing$S_t_sm[,1:n_factors]
 
@@ -1447,11 +1448,11 @@ co_asc_AFNSd_BS <- function(mu_bar, x0, delta, kappa, sigma_dg, Sigma_cov, r, ma
 CovEst_BS_AFNSd <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar, n_BS=500, t_ex = 4, max_it=200, tolerance_lev=0.1, workdir=0){
   n_ages <- nrow(mu_bar)
   n_years <- ncol(mu_bar)
+  n_factors <- length(kappa)
 
   par_table <- matrix(NA, n_BS, length(c(delta, kappa, sigma_dg, Sigma_cov, r)))
-  colnames(par_table) <- c("delta", sprintf("kappa_%d", c(1:n_factors)), 'sigma_L', 'sigma_LS', 'sigma_S', 'sigma_LC', 'sigma_SC', 'sigma_C', c("r1", "r2", "rc"))
+  colnames(par_table) <- c("delta", sprintf("kappa_%s", c("L", 'S', 'C')), 'sigma_L', 'sigma_LS', 'sigma_S', 'sigma_LC', 'sigma_SC', 'sigma_C', c("r1", "r2", "rc"))
   res_table <- matrix(NA, n_ages, n_years)
-  n_factors <- length(kappa)
 
   # - 4) Parameter estimation
   ## - 4.1) Get filtered estimates
