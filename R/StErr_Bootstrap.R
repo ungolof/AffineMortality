@@ -1201,7 +1201,7 @@ CovEst_BS_AFNSi <- function(x0, delta, kappa, sigma, r, mu_bar, n_BS=500, t_ex =
   S_t_c_fil <- Filtering$S_t_c
 
   ## - 4.2) Get smoothed estimate of x0
-  Smoothing <- RTS_sm_bas(X_t_fil, X_t_c_fil, S_t_fil, S_t_c_fil, kappa, n_years)
+  Smoothing <- RTS_sm_bas(X_t_fil, X_t_c_fil, S_t_fil, S_t_c_fil, kappa, n_years )
   X_t_sm <- Smoothing$X_t_sm[,1]
   S_t_sm <- Smoothing$S_t_sm[,1:n_factors]
 
