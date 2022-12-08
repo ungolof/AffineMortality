@@ -190,7 +190,7 @@ CovEst_BS_BSi <- function(x0, delta, kappa, sigma, r, mu_bar, n_BS=500, t_ex = 4
   n_ages <- nrow(mu_bar)
   n_years <- ncol(mu_bar)
 
-  colnames(par_table_BSi) <- c(sprintf("delta_%d", c(1:n_factors)), sprintf("kappa_%d", c(1:n_factors)), sprintf("sigma_%d", c(1:n_factors)), c("r1", "r2", "rc"))
+  colnames(par_table) <- c(sprintf("delta_%d", c(1:n_factors)), sprintf("kappa_%d", c(1:n_factors)), sprintf("sigma_%d", c(1:n_factors)), c("r1", "r2", "rc"))
 
   res_table <- matrix(NA, n_ages, n_years)
 
@@ -454,7 +454,7 @@ CovEst_BS_BSd_2F <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar, n
   n_years <- ncol(mu_bar)
 
   par_table <- matrix(NA, n_BS, length(c(delta, kappa, sigma_dg, Sigma_cov, r)))
-  colnames(par_table_BSd) <- c("delta_11", 'delta_21', 'delta_22', sprintf("kappa_%d", c(1:n_factors)), 'sigma_11', 'sigma_21', 'sigma_22', c("r1", "r2", "rc"))
+  colnames(par_table) <- c("delta_11", 'delta_21', 'delta_22', sprintf("kappa_%d", c(1:n_factors)), 'sigma_11', 'sigma_21', 'sigma_22', c("r1", "r2", "rc"))
   res_table <- matrix(NA, n_ages, n_years)
   n_factors <- length(kappa)
 
@@ -721,7 +721,7 @@ CovEst_BS_BSd_3F <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar, n
   n_years <- ncol(mu_bar)
 
   par_table <- matrix(NA, n_BS, length(c(delta, kappa, sigma_dg, Sigma_cov, r)))
-  colnames(par_table_BSd) <- c("delta_11", 'delta_21', 'delta_22', 'delta_31', 'delta_32', 'delta_33', sprintf("kappa_%d", c(1:n_factors)), 'sigma_11', 'sigma_21', 'sigma_22', 'sigma_31', 'sigma_32', 'sigma_33', c("r1", "r2", "rc"))
+  colnames(par_table) <- c("delta_11", 'delta_21', 'delta_22', 'delta_31', 'delta_32', 'delta_33', sprintf("kappa_%d", c(1:n_factors)), 'sigma_11', 'sigma_21', 'sigma_22', 'sigma_31', 'sigma_32', 'sigma_33', c("r1", "r2", "rc"))
   res_table <- matrix(NA, n_ages, n_years)
   n_factors <- length(kappa)
 
@@ -962,7 +962,7 @@ CovEst_BS_GMki <- function(x0, delta, kappa, gamma, sigma, r, mu_bar, n_BS=500, 
   n_ages <- nrow(mu_bar)
   n_years <- ncol(mu_bar)
 
-  colnames(par_table_GMki) <- c(sprintf("delta_%d", c(1:n_factors)), sprintf("kappa_%d", c(1:n_factors)), "gamma", sprintf("sigma_%d", c(1:n_factors)), c("r1", "r2", "rc"))
+  colnames(par_table) <- c(sprintf("delta_%d", c(1:n_factors)), sprintf("kappa_%d", c(1:n_factors)), "gamma", sprintf("sigma_%d", c(1:n_factors)), c("r1", "r2", "rc"))
 
   res_table <- matrix(NA, n_ages, n_years)
 
@@ -1185,7 +1185,7 @@ co_asc_AFNSi_BS <- function(mu_bar, x0, delta, kappa, sigma, r, max_iter=200, to
 
 CovEst_BS_AFNSi <- function(x0, delta, kappa, sigma, r, mu_bar, n_BS=500, t_ex = 4, max_it=200, tolerance_lev=0.1, workdir=0){
   par_table <- matrix(NA, n_BS, length(c(delta, kappa, sigma, r)))
-  colnames(par_table_AFNSi) <- c("delta", sprintf("kappa_%s", c("L", 'S', 'C')), sprintf("sigma_%s", c("L", 'S', 'C')), c("r1", "r2", "rc"))
+  colnames(par_table) <- c("delta", sprintf("kappa_%s", c("L", 'S', 'C')), sprintf("sigma_%s", c("L", 'S', 'C')), c("r1", "r2", "rc"))
   n_factors <- length(kappa)
   n_ages <- nrow(mu_bar)
   n_years <- ncol(mu_bar)
@@ -1449,7 +1449,7 @@ CovEst_BS_AFNSd <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar, n_
   n_years <- ncol(mu_bar)
 
   par_table <- matrix(NA, n_BS, length(c(delta, kappa, sigma_dg, Sigma_cov, r)))
-  colnames(par_table_AFNSd) <- c("delta", sprintf("kappa_%d", c(1:n_factors)), 'sigma_L', 'sigma_LS', 'sigma_S', 'sigma_LC', 'sigma_SC', 'sigma_C', c("r1", "r2", "rc"))
+  colnames(par_table) <- c("delta", sprintf("kappa_%d", c(1:n_factors)), 'sigma_L', 'sigma_LS', 'sigma_S', 'sigma_LC', 'sigma_SC', 'sigma_C', c("r1", "r2", "rc"))
   res_table <- matrix(NA, n_ages, n_years)
   n_factors <- length(kappa)
 
