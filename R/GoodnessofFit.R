@@ -15,8 +15,8 @@ mu_bar_hat_BSi <- function(x0, delta, kappa, sigma, r, mu_bar){
   X_t <- KF_outcome$X_t
 
   mu_bar_hat <- matrix(NA, n_ages, n_years)
-  rownames(mu_bar_hat) <- AgeRange
-  colnames(mu_bar_hat) <- CohortRange
+  rownames(mu_bar_hat) <- rownames(mu_bar)
+  colnames(mu_bar_hat) <- colnames(mu_bar)
 
   ## - Factor loading matrices
   A_tT <- matrix(0, n_ages, 1)
@@ -45,8 +45,8 @@ mu_bar_hat_BSd_2F <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar){
   X_t <- KF_outcome$X_t
 
   mu_bar_hat <- matrix(NA, n_ages, n_years)
-  rownames(mu_bar_hat) <- AgeRange
-  colnames(mu_bar_hat) <- CohortRange
+  rownames(mu_bar_hat) <- rownames(mu_bar)
+  colnames(mu_bar_hat) <- colnames(mu_bar)
 
   ## - Factor loading matrices
   A_tT <- matrix(0, n_ages, 1)
@@ -81,8 +81,8 @@ mu_bar_hat_BSd_3F <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar){
   X_t <- KF_outcome$X_t
 
   mu_bar_hat <- matrix(NA, n_ages, n_years)
-  rownames(mu_bar_hat) <- AgeRange
-  colnames(mu_bar_hat) <- CohortRange
+  rownames(mu_bar_hat) <- rownames(mu_bar)#AgeRange
+  colnames(mu_bar_hat) <- colnames(mu_bar)
 
   ## - Factor loading matrices
   A_tT <- matrix(0, n_ages, 1)
@@ -117,8 +117,8 @@ mu_bar_hat_GMki <- function(x0, delta, kappa, gamma, sigma, r, mu_bar){
   X_t <- KF_outcome$X_t
 
   mu_bar_hat <- matrix(NA, n_ages, n_years)
-  rownames(mu_bar_hat) <- AgeRange
-  colnames(mu_bar_hat) <- CohortRange
+  rownames(mu_bar_hat) <- rownames(mu_bar)
+  colnames(mu_bar_hat) <- colnames(mu_bar)
 
   ## - Factor loading matrices
   A_tT <- matrix(0, n_ages, 1)
@@ -147,8 +147,8 @@ mu_bar_hat_GMkd <- function(x0, delta, kappa, gamma, sigma_dg, Sigma_cov, r, mu_
   X_t <- KF_outcome$X_t
 
   mu_bar_hat <- matrix(NA, n_ages, n_years)
-  rownames(mu_bar_hat) <- AgeRange
-  colnames(mu_bar_hat) <- CohortRange
+  rownames(mu_bar_hat) <- rownames(mu_bar)
+  colnames(mu_bar_hat) <- colnames(mu_bar)
 
   ## - Factor loading matrices
   A_tT <- matrix(0, n_ages, 1)
@@ -183,8 +183,8 @@ mu_bar_hat_AFNSi <- function(x0, delta, kappa, sigma, r, mu_bar){
   X_t <- KF_outcome$X_t
 
   mu_bar_hat <- matrix(NA, n_ages, n_years)
-  rownames(mu_bar_hat) <- AgeRange
-  colnames(mu_bar_hat) <- CohortRange
+  rownames(mu_bar_hat) <- rownames(mu_bar)
+  colnames(mu_bar_hat) <- colnames(mu_bar)
 
   ## - Factor loading matrices
   A_tT <- matrix(0, n_ages, 1)
@@ -211,8 +211,8 @@ mu_bar_hat_AFNSd <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar){
   X_t <- KF_outcome$X_t
 
   mu_bar_hat <- matrix(NA, n_ages, n_years)
-  rownames(mu_bar_hat) <- AgeRange
-  colnames(mu_bar_hat) <- CohortRange
+  rownames(mu_bar_hat) <- rownames(mu_bar)
+  colnames(mu_bar_hat) <- colnames(mu_bar)
 
   ## - Factor loading matrices
   A_tT <- matrix(0, n_ages, 1)
@@ -247,8 +247,8 @@ mu_bar_hat_AFGNSi <- function(x0, delta, kappa, sigma, r, mu_bar){
   X_t <- KF_outcome$X_t
 
   mu_bar_hat <- matrix(NA, n_ages, n_years)
-  rownames(mu_bar_hat) <- AgeRange
-  colnames(mu_bar_hat) <- CohortRange
+  rownames(mu_bar_hat) <- rownames(mu_bar)
+  colnames(mu_bar_hat) <- colnames(mu_bar)
 
   ## - Factor loading matrices
   A_tT <- matrix(0, n_ages, 1)
@@ -275,8 +275,8 @@ mu_bar_hat_AFGNSd <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar){
   X_t <- KF_outcome$X_t
 
   mu_bar_hat <- matrix(NA, n_ages, n_years)
-  rownames(mu_bar_hat) <- AgeRange
-  colnames(mu_bar_hat) <- CohortRange
+  rownames(mu_bar_hat) <- rownames(mu_bar)
+  colnames(mu_bar_hat) <- colnames(mu_bar)
 
   ## - Factor loading matrices
   A_tT <- matrix(0, n_ages, 1)
@@ -311,8 +311,8 @@ mu_bar_hat_AFUNSi <- function(x0, delta, kappa, sigma, r, mu_bar){
   X_t <- KF_outcome$X_t
 
   mu_bar_hat <- matrix(NA, n_ages, n_years)
-  rownames(mu_bar_hat) <- AgeRange
-  colnames(mu_bar_hat) <- CohortRange
+  rownames(mu_bar_hat) <- rownames(mu_bar)
+  colnames(mu_bar_hat) <- colnames(mu_bar)
 
   ## - Factor loading matrices
   A_tT <- matrix(0, n_ages, 1)
@@ -340,8 +340,8 @@ mu_bar_hat_AFRNSi <- function(x0, delta, kappa, sigma, r, mu_bar){
   X_t <- KF_outcome$X_t
 
   mu_bar_hat <- matrix(NA, n_ages, n_years)
-  rownames(mu_bar_hat) <- AgeRange
-  colnames(mu_bar_hat) <- CohortRange
+  rownames(mu_bar_hat) <- rownames(mu_bar)
+  colnames(mu_bar_hat) <- colnames(mu_bar)
 
   ## - Factor loading matrices
   A_tT <- matrix(0, n_ages, 1)
@@ -368,8 +368,8 @@ mu_bar_hat_CIR <- function(x0, delta, kappa, sigma, theta_P, r, mu_bar){
   X_t <- KF_outcome$X_t
 
   mu_bar_hat <- matrix(NA, n_ages, n_years)
-  rownames(mu_bar_hat) <- AgeRange
-  colnames(mu_bar_hat) <- CohortRange
+  rownames(mu_bar_hat) <- rownames(mu_bar)
+  colnames(mu_bar_hat) <- colnames(mu_bar)
 
   ## - Factor loading matrices
   A_tT <- matrix(0, n_ages, 1)
