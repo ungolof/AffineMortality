@@ -203,7 +203,7 @@ CovEst_BS_BSi <- function(x0, delta, kappa, sigma, r, mu_bar, n_BS=500, t_ex = 4
   S_t_c_fil <- Filtering$S_t_c
 
   ## - 4.2) Get smoothed estimate of x0
-  Smoothing <- RTS_sm_bas(X_t_fil, X_t_c_fil, S_t_fil, S_t_c_fil, kappa)
+  Smoothing <- RTS_sm_bas(X_t_fil, X_t_c_fil, S_t_fil, S_t_c_fil, kappa, n_years)
   X_t_sm <- Smoothing$X_t_sm[,1]
   S_t_sm <- Smoothing$S_t_sm[,1:n_factors]
 
@@ -467,12 +467,12 @@ CovEst_BS_BSd_2F <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar, n
   S_t_c_fil <- Filtering$S_t_c
 
   ## - 4.2) Get smoothed estimate of x0
-  Smoothing <- RTS_sm_bas(X_t_fil, X_t_c_fil, S_t_fil, S_t_c_fil, kappa)
+  Smoothing <- RTS_sm_bas(X_t_fil, X_t_c_fil, S_t_fil, S_t_c_fil, kappa, n_years)
   X_t_sm <- Smoothing$X_t_sm[,1]
   S_t_sm <- Smoothing$S_t_sm[,1:n_factors]
 
   # - 1) Get standardized residuals
-  std_r <- std_res_BSd_2F(x0, delta, kappa, sigma_dg, Sigma_cov, r)
+  std_r <- std_res_BSd_2F(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar=mu_bar)
   ## - Fill the first t_ex residuals, which stay the same
   res_table[,1:t_ex] <- std_r[,1:t_ex]
 
@@ -734,12 +734,12 @@ CovEst_BS_BSd_3F <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar, n
   S_t_c_fil <- Filtering$S_t_c
 
   ## - 4.2) Get smoothed estimate of x0
-  Smoothing <- RTS_sm_bas(X_t_fil, X_t_c_fil, S_t_fil, S_t_c_fil, kappa)
+  Smoothing <- RTS_sm_bas(X_t_fil, X_t_c_fil, S_t_fil, S_t_c_fil, kappa, n_years)
   X_t_sm <- Smoothing$X_t_sm[,1]
   S_t_sm <- Smoothing$S_t_sm[,1:n_factors]
 
   # - 1) Get standardized residuals
-  std_r <- std_res_BSd_3F(x0, delta, kappa, sigma_dg, Sigma_cov, r)
+  std_r <- std_res_BSd_3F(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar=mu_bar)
   ## - Fill the first t_ex residuals, which stay the same
   res_table[,1:t_ex] <- std_r[,1:t_ex]
 
@@ -975,7 +975,7 @@ CovEst_BS_GMki <- function(x0, delta, kappa, gamma, sigma, r, mu_bar, n_BS=500, 
   S_t_c_fil <- Filtering$S_t_c
 
   ## - 4.2) Get smoothed estimate of x0
-  Smoothing <- RTS_sm_bas(X_t_fil, X_t_c_fil, S_t_fil, S_t_c_fil, kappa)
+  Smoothing <- RTS_sm_bas(X_t_fil, X_t_c_fil, S_t_fil, S_t_c_fil, kappa, n_years)
   X_t_sm <- Smoothing$X_t_sm[,1]
   S_t_sm <- Smoothing$S_t_sm[,1:n_factors]
 
@@ -1201,12 +1201,12 @@ CovEst_BS_AFNSi <- function(x0, delta, kappa, sigma, r, mu_bar, n_BS=500, t_ex =
   S_t_c_fil <- Filtering$S_t_c
 
   ## - 4.2) Get smoothed estimate of x0
-  Smoothing <- RTS_sm_bas(X_t_fil, X_t_c_fil, S_t_fil, S_t_c_fil, kappa)
+  Smoothing <- RTS_sm_bas(X_t_fil, X_t_c_fil, S_t_fil, S_t_c_fil, kappa, n_years)
   X_t_sm <- Smoothing$X_t_sm[,1]
   S_t_sm <- Smoothing$S_t_sm[,1:n_factors]
 
   # - 1) Get standardized residuals
-  std_r <- std_res_AFNSi(x0, delta, kappa, sigma, r)
+  std_r <- std_res_AFNSi(x0, delta, kappa, sigma, r, mu_bar=mu_bar)
   ## - Fill the first t_ex residuals, which stay the same
   res_table[,1:t_ex] <- std_r[,1:t_ex]
 
@@ -1462,12 +1462,12 @@ CovEst_BS_AFNSd <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar, n_
   S_t_c_fil <- Filtering$S_t_c
 
   ## - 4.2) Get smoothed estimate of x0
-  Smoothing <- RTS_sm_bas(X_t_fil, X_t_c_fil, S_t_fil, S_t_c_fil, kappa)
+  Smoothing <- RTS_sm_bas(X_t_fil, X_t_c_fil, S_t_fil, S_t_c_fil, kappa, n_years)
   X_t_sm <- Smoothing$X_t_sm[,1]
   S_t_sm <- Smoothing$S_t_sm[,1:3]
 
   # - 1) Get standardized residuals
-  std_r <- std_res_AFNSd(x0, delta, kappa, sigma_dg, Sigma_cov, r)
+  std_r <- std_res_AFNSd(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar=mu_bar)
   ## - Fill the first t_ex residuals, which stay the same
   res_table[,1:t_ex] <- std_r[,1:t_ex]
 
