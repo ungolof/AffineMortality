@@ -155,7 +155,7 @@ co_asc_BSi_MI <- function(mu_bar, X_random, delta, kappa, sigma, r, max_iter=200
 
 # - Function for the calculation of the covariance matrix and of the standard errors
 # - It takes the parameter values and the number of draws as input (default value set equal to 50)
-CovEst_MI_BSi <- function(x0, delta, kappa, sigma, r, mu_bar, D_se=50, max_it=200, tolerance_lev=0.1){
+CovEst_MI_BSi <- function(x0, delta, kappa, sigma, r, mu_bar, D_se=50, max_it=200, tolerance_lev=0.1, workdir=0){
   n_factors <- length(kappa)
   n_ages <- nrow(mu_bar)
   n_years <- ncol(mu_bar)
@@ -425,7 +425,7 @@ co_asc_BSd_3F_MI <- function(mu_bar, X_random, delta, kappa, sigma_dg, Sigma_cov
   return(list(delta=delta_par, kappa=kappa_par, dg_l_Sigma_chol=dg_l_Sigma_chol_par, odg_Sigma_chol=odg_Sigma_chol_par, l_r=l_r_par))
 }
 
-CovEst_MI_BSd_3F <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar, D_se=50, max_it=200, tolerance_lev=0.1){
+CovEst_MI_BSd_3F <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar, D_se=50, max_it=200, tolerance_lev=0.1, workdir=0){
   n_factors <- length(kappa)
   n_ages <- nrow(mu_bar)
   n_years <- ncol(mu_bar)
@@ -652,7 +652,7 @@ co_asc_AFNSi_MI <- function(mu_bar, X_random, delta, kappa, sigma, r, max_iter=2
   return(list(delta=delta_par, kappa=kappa_par, l_sigma=l_sigma_par, l_r=l_r_par))
 }
 
-CovEst_MI_AFNSi <- function(x0, delta, kappa, sigma, r, mu_bar, D_se=50, max_it=200, tolerance_lev=0.1){
+CovEst_MI_AFNSi <- function(x0, delta, kappa, sigma, r, mu_bar, D_se=50, max_it=200, tolerance_lev=0.1, workdir=0){
   n_factors <- length(kappa)
   n_ages <- nrow(mu_bar)
   n_years <- ncol(mu_bar)
@@ -894,7 +894,7 @@ co_asc_AFNSd_MI <- function(mu_bar, X_random, delta, kappa, sigma_dg, Sigma_cov,
   return(list(delta=delta_par, kappa=kappa_par, dg_l_Sigma_chol=dg_l_Sigma_chol_par, odg_Sigma_chol=odg_Sigma_chol_par, l_r=l_r_par))
 }
 
-CovEst_MI_AFNSd <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar, D_se=50, max_it=200, tolerance_lev=0.1){
+CovEst_MI_AFNSd <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar, D_se=50, max_it=200, tolerance_lev=0.1, workdir=0){
   n_factors <- length(kappa)
   n_ages <- nrow(mu_bar)
   n_years <- ncol(mu_bar)
@@ -1120,7 +1120,7 @@ co_asc_AFGNSi_MI <- function(mu_bar, X_random, delta, kappa, sigma, r, max_iter=
   return(list(delta=delta_par, kappa=kappa_par, l_sigma=l_sigma_par, l_r=l_r_par))
 }
 
-CovEst_MI_AFGNSi <- function(x0, delta, kappa, sigma, r, mu_bar, D_se=50, max_it=200, tolerance_lev=0.1){
+CovEst_MI_AFGNSi <- function(x0, delta, kappa, sigma, r, mu_bar, D_se=50, max_it=200, tolerance_lev=0.1, workdir=0){
   n_factors <- length(kappa)
   n_ages <- nrow(mu_bar)
   n_years <- ncol(mu_bar)
@@ -1367,7 +1367,7 @@ co_asc_AFGNSd_MI <- function(mu_bar, X_random, delta, kappa, sigma_dg, Sigma_cov
   return(list(delta=delta_par, kappa=kappa_par, dg_l_Sigma_chol=dg_l_Sigma_chol_par, odg_Sigma_chol1=odg_Sigma_chol1_par, odg_Sigma_chol2=odg_Sigma_chol2_par, l_r=l_r_par))
 }
 
-CovEst_MI_AFGNSd <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar, D_se=50, max_it=200, tolerance_lev=0.1){
+CovEst_MI_AFGNSd <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar, D_se=50, max_it=200, tolerance_lev=0.1, workdir=0){
   n_factors <- length(kappa)
   n_ages <- nrow(mu_bar)
   n_years <- ncol(mu_bar)
