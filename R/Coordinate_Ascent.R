@@ -125,7 +125,7 @@ co_asc_BSi <- function(mu_bar, x0=c(6.960591e-03, 9.017154e-03, 5.091784e-03), d
   }
 
 #  return(list(par_est = list(x0=CA_par[iter_count,1:n_factors], delta=CA_par[iter_count,((n_factors + 1):(n_factors*2))], kappa=CA_par[iter_count,((n_factors*2 + 1):(n_factors*3))], sigma=CA_par[iter_count,((n_factors*3 + 1):(n_factors*4))], r1=CA_par[iter_count,(n_factors*4 + 1)], r2=CA_par[iter_count,(n_factors*4 + 2)], rc=CA_par[iter_count,(n_factors*4 + 3)]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma, r))+1], CA_table = CA_par[1:iter_count,]))
-  return(list(par_est = list(x0=CA_par[iter_count,1:n_factors], delta=CA_par[iter_count,((n_factors + 1):(n_factors*2))], kappa=CA_par[iter_count,((n_factors*2 + 1):(n_factors*3))], sigma=CA_par[iter_count,((n_factors*3 + 1):(n_factors*4))], r=CA_par[iter_count,((n_factors*4 + 1):(n_factors*5))]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma, r))+1], CA_table = CA_par[1:iter_count,]))
+  return(list(par_est = list(x0=CA_par[iter_count,1:n_factors], delta=CA_par[iter_count,((n_factors + 1):(n_factors*2))], kappa=CA_par[iter_count,((n_factors*2 + 1):(n_factors*3))], sigma=CA_par[iter_count,((n_factors*3 + 1):(n_factors*4))], r1=CA_par[iter_count,(n_factors*4 + 1)], r2=CA_par[iter_count,(n_factors*4 + 2)], rc=CA_par[iter_count,(n_factors*4 + 3)]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma, r))+1], CA_table = CA_par[1:iter_count,]))
 }
 
 
@@ -345,7 +345,7 @@ co_asc_BSd_2F <- function(mu_bar, x0=c(2.191140e-03, -8.855686e-03), delta=c(-5.
   }
 
   #return(list(par_est = list(x0=CA_par[iter_count,c(1:2)], delta=CA_par[iter_count,3:5], kappa=CA_par[iter_count,c(6:7)], Sigma=list(sigma_11 = CA_par[iter_count,8], sigma_21 = CA_par[iter_count,9], sigma_22 = CA_par[iter_count,10]), r1=CA_par[iter_count,11], r2=CA_par[iter_count,12], rc=CA_par[iter_count,13]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma_dg, Sigma_cov, r))+1], CA_table = CA_par[1:iter_count,]))
-  return(list(par_est = list(x0=CA_par[iter_count,c(1:2)], delta=CA_par[iter_count,3:5], kappa=CA_par[iter_count,c(6:7)], sigma_dg=sqrt(CA_par[iter_count,c(8,10)]), Sigma_cov=CA_par[iter_count,9], r=CA_par[iter_count,c(11:13)]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma_dg, Sigma_cov, r))+1], CA_table = CA_par[1:iter_count,]))
+  return(list(par_est = list(x0=CA_par[iter_count,c(1:2)], delta=CA_par[iter_count,3:5], kappa=CA_par[iter_count,c(6:7)], sigma_dg=sqrt(CA_par[iter_count,c(8,10)]), Sigma_cov=CA_par[iter_count,9], r1=CA_par[iter_count,11], r2=CA_par[iter_count,12], rc=CA_par[iter_count,13]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma_dg, Sigma_cov, r))+1], CA_table = CA_par[1:iter_count,]))
 }
 
 # - Directly provide the parameters
@@ -418,7 +418,7 @@ co_asc_BSd_3F <- function(mu_bar, x0=c(2.191140e-03, -8.855686e-03, 2.711990e-02
   }
 
   #return(list(par_est = list(x0=CA_par[iter_count,c(1:3)], delta=CA_par[iter_count,4:9], kappa=CA_par[iter_count,c(10:12)], Sigma=list(sigma_11 = CA_par[iter_count,13], sigma_21 = CA_par[iter_count,14], sigma_22 = CA_par[iter_count,15], sigma_31 = CA_par[iter_count,16], sigma_32 = CA_par[iter_count,17], sigma_33 = CA_par[iter_count,18]), r1=CA_par[iter_count,19], r2=CA_par[iter_count,20], rc=CA_par[iter_count,21]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma_dg, Sigma_cov, r))+1], CA_table = CA_par[1:iter_count,]))
-  return(list(par_est = list(x0=CA_par[iter_count,c(1:3)], delta=CA_par[iter_count,4:9], kappa=CA_par[iter_count,c(10:12)], sigma_dg=sqrt(CA_par[iter_count,c(13,15,18)]), Sigma_cov=CA_par[iter_count,c(14,16,17)], r=CA_par[iter_count,c(19:21)]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma_dg, Sigma_cov, r))+1], CA_table = CA_par[1:iter_count,]))
+  return(list(par_est = list(x0=CA_par[iter_count,c(1:3)], delta=CA_par[iter_count,4:9], kappa=CA_par[iter_count,c(10:12)], sigma_dg=sqrt(CA_par[iter_count,c(13,15,18)]), Sigma_cov=CA_par[iter_count,c(14,16,17)], r1=CA_par[iter_count,19], r2=CA_par[iter_count,20], rc=CA_par[iter_count,21]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma_dg, Sigma_cov, r))+1], CA_table = CA_par[1:iter_count,]))
 }
 
 #============= - Gaussian - Makeham (2 factor) - ==============
@@ -550,7 +550,7 @@ co_asc_GMki <- function(mu_bar, x0=c(2.191140e-03, -8.855686e-03), delta=c(-5.17
   }
 
 #  return(list(par_est = list(x0=CA_par[iter_count,c(1:2)], delta=CA_par[iter_count,3:4], kappa=CA_par[iter_count,c(5:6)], gamma=CA_par[iter_count,7], sigma=CA_par[iter_count,c(8,9)], r1=CA_par[iter_count,10], r2=CA_par[iter_count,11], rc=CA_par[iter_count,12]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, gamma, sigma, r))+1], CA_table = CA_par[1:iter_count,]))
-  return(list(par_est = list(x0=CA_par[iter_count,c(1:2)], delta=CA_par[iter_count,3:4], kappa=CA_par[iter_count,c(5:6)], gamma=CA_par[iter_count,7], sigma=CA_par[iter_count,c(8,9)], r=CA_par[iter_count,c(10:12)]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, gamma, sigma, r))+1], CA_table = CA_par[1:iter_count,]))
+  return(list(par_est = list(x0=CA_par[iter_count,c(1:2)], delta=CA_par[iter_count,3:4], kappa=CA_par[iter_count,c(5:6)], gamma=CA_par[iter_count,7], sigma=CA_par[iter_count,c(8,9)], r1=CA_par[iter_count,10], r2=CA_par[iter_count,11], rc=CA_par[iter_count,12]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, gamma, sigma, r))+1], CA_table = CA_par[1:iter_count,]))
 }
 
 
@@ -689,7 +689,7 @@ co_asc_GMkd <- function(mu_bar, x0=c(2.191140e-03, -8.855686e-03), delta=c(-5.17
   }
 
 #  return(list(par_est = list(x0=CA_par[iter_count,c(1:2)], delta=CA_par[iter_count,3:5], kappa=CA_par[iter_count,c(6:7)], gamma=CA_par[iter_count,8], Sigma=list(sigma_11 = CA_par[iter_count,9], sigma_21 = CA_par[iter_count,10], sigma_22 = CA_par[iter_count,11]), r1=CA_par[iter_count,12], r2=CA_par[iter_count,13], rc=CA_par[iter_count,14]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, gamma, sigma_dg, Sigma_cov, r))+1], CA_table = CA_par[1:iter_count,]))
-  return(list(par_est = list(x0=CA_par[iter_count,c(1:2)], delta=CA_par[iter_count,3:5], kappa=CA_par[iter_count,c(6:7)], gamma=CA_par[iter_count,8], sigma_dg=CA_par[iter_count,c(9,11)], Sigma_cov = CA_par[iter_count,10], r=CA_par[iter_count,(12:14)]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, gamma, sigma_dg, Sigma_cov, r))+1], CA_table = CA_par[1:iter_count,]))
+  return(list(par_est = list(x0=CA_par[iter_count,c(1:2)], delta=CA_par[iter_count,3:5], kappa=CA_par[iter_count,c(6:7)], gamma=CA_par[iter_count,8], sigma_dg=CA_par[iter_count,c(9,11)], Sigma_cov = CA_par[iter_count,10], r1=CA_par[iter_count,12], r2=CA_par[iter_count,13], rc=CA_par[iter_count,14]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, gamma, sigma_dg, Sigma_cov, r))+1], CA_table = CA_par[1:iter_count,]))
 }
 
 
@@ -818,7 +818,7 @@ co_asc_AFNSi <- function(mu_bar, x0=c(1.091714e-02, 1.002960e-02, -5.990785e-04)
   }
 
 #  return(list(par_est = list(x0=CA_par[iter_count,1:3], delta=CA_par[iter_count,4], kappa=CA_par[iter_count,5:7], sigma=CA_par[iter_count,8:10], r1=CA_par[iter_count,11], r2=CA_par[iter_count,12], rc=CA_par[iter_count,13]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma, r))+1], CA_table = CA_par[1:iter_count,]))
-  return(list(par_est = list(x0=CA_par[iter_count,1:3], delta=CA_par[iter_count,4], kappa=CA_par[iter_count,5:7], sigma=CA_par[iter_count,8:10], r=CA_par[iter_count,c(11:13)]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma, r))+1], CA_table = CA_par[1:iter_count,]))
+  return(list(par_est = list(x0=CA_par[iter_count,1:3], delta=CA_par[iter_count,4], kappa=CA_par[iter_count,5:7], sigma=CA_par[iter_count,8:10], r1=CA_par[iter_count,11], r2=CA_par[iter_count,12], rc=CA_par[iter_count,13]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma, r))+1], CA_table = CA_par[1:iter_count,]))
 }
 
 #================== - AFNS dependent Coordinate ascent algorithm - =========================
@@ -961,7 +961,7 @@ co_asc_AFNSd <- function(mu_bar, x0=c(9.582516e-03, 1.094110e-02, -1.503155e-03)
   }
 
 #  return(list(par_est = list(x0=CA_par[iter_count,c(1:3)], delta=CA_par[iter_count,4], kappa=CA_par[iter_count,c(5:7)], Sigma=list(sigma_L = CA_par[iter_count,8], sigma_LS = CA_par[iter_count,9], sigma_S = CA_par[iter_count,10], sigma_LC = CA_par[iter_count,11], sigma_SC = CA_par[iter_count,12], sigma_C = CA_par[iter_count,13]), r1=CA_par[iter_count,14], r2=CA_par[iter_count,15], rc=CA_par[iter_count,16]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma_dg, Sigma_cov, r))+1], CA_table = CA_par[1:iter_count,]))
-  return(list(par_est = list(x0=CA_par[iter_count,c(1:3)], delta=CA_par[iter_count,4], kappa=CA_par[iter_count,c(5:7)], sigma_dg=CA_par[iter_count,c(8,10,13)], Sigma_cov=CA_par[iter_count,c(9,11,12)], r=CA_par[iter_count,c(14:16)]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma_dg, Sigma_cov, r))+1], CA_table = CA_par[1:iter_count,]))
+  return(list(par_est = list(x0=CA_par[iter_count,c(1:3)], delta=CA_par[iter_count,4], kappa=CA_par[iter_count,c(5:7)], sigma_dg=CA_par[iter_count,c(8,10,13)], Sigma_cov=CA_par[iter_count,c(9,11,12)], r1=CA_par[iter_count,14], r2=CA_par[iter_count,15], rc=CA_par[iter_count,16]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma_dg, Sigma_cov, r))+1], CA_table = CA_par[1:iter_count,]))
 }
 
 #================================== - AFGNS independent Coordinate ascent algorithm -=====================================
@@ -1089,7 +1089,7 @@ co_asc_AFGNSi <- function(mu_bar, x0=c(1.091714e-02, 1.002960e-02, 5.990785e-04,
   }
 
 #  return(list(par_est = list(x0=CA_par[iter_count,1:5], delta=CA_par[iter_count,6:7], kappa=CA_par[iter_count,8:12], sigma=CA_par[iter_count,13:17], r1=CA_par[iter_count,18], r2=CA_par[iter_count,19], rc=CA_par[iter_count,20]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma, r))+1], CA_table = CA_par[1:iter_count,]))
-  return(list(par_est = list(x0=CA_par[iter_count,1:5], delta=CA_par[iter_count,6:7], kappa=CA_par[iter_count,8:12], sigma=CA_par[iter_count,13:17], r=CA_par[iter_count,c(18:20)]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma, r))+1], CA_table = CA_par[1:iter_count,]))
+  return(list(par_est = list(x0=CA_par[iter_count,1:5], delta=CA_par[iter_count,6:7], kappa=CA_par[iter_count,8:12], sigma=CA_par[iter_count,13:17], r1=CA_par[iter_count,18], r2=CA_par[iter_count,19], rc=CA_par[iter_count,20]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma, r))+1], CA_table = CA_par[1:iter_count,]))
 }
 
 
@@ -1239,7 +1239,7 @@ co_asc_AFGNSd <- function(mu_bar, x0=c(1.091714e-02, 1.002960e-02, 5.990785e-04,
   }
 
 #  return(list(par_est = list(x0=CA_par[iter_count,c(1:5)], delta=CA_par[iter_count,c(6:7)], kappa=CA_par[iter_count,c(8:12)], Sigma=list(sigma_L = CA_par[iter_count,13], sigma_LS1 = CA_par[iter_count,14], sigma_S1 = CA_par[iter_count,15], sigma_LS2 = CA_par[iter_count,16], sigma_S1S2 = CA_par[iter_count,17], sigma_S2 = CA_par[iter_count,18], sigma_LC1 = CA_par[iter_count,19], sigma_S1C1 = CA_par[iter_count,20], sigma_S2C1 = CA_par[iter_count,21], sigma_C1 = CA_par[iter_count,22], sigma_LC2 = CA_par[iter_count,23], sigma_S1C2 = CA_par[iter_count,24], sigma_S2C2 = CA_par[iter_count,25], sigma_C1C2 = CA_par[iter_count,26], sigma_C2 = CA_par[iter_count,27]), r1=CA_par[iter_count,28], r2=CA_par[iter_count,29], rc=CA_par[iter_count,30]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma_dg, Sigma_cov, r))+1], CA_table = CA_par[1:iter_count,]))
-  return(list(par_est = list(x0=CA_par[iter_count,c(1:5)], delta=CA_par[iter_count,c(6:7)], kappa=CA_par[iter_count,c(8:12)], sigma_dg=CA_par[iter_count,c(13,15,18,22,27)],Sigma_cov=CA_par[iter_count,c(14,16,17,19,20,21,23,24,25,26)], r=CA_par[iter_count,c(28:30)]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma_dg, Sigma_cov, r))+1], CA_table = CA_par[1:iter_count,]))
+  return(list(par_est = list(x0=CA_par[iter_count,c(1:5)], delta=CA_par[iter_count,c(6:7)], kappa=CA_par[iter_count,c(8:12)], sigma_dg=CA_par[iter_count,c(13,15,18,22,27)],Sigma_cov=CA_par[iter_count,c(14,16,17,19,20,21,23,24,25,26)], r1=CA_par[iter_count,28], r2=CA_par[iter_count,29], rc=CA_par[iter_count,30]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma_dg, Sigma_cov, r))+1], CA_table = CA_par[1:iter_count,]))
 }
 
 
@@ -1366,8 +1366,7 @@ co_asc_AFUNSi <- function(mu_bar, x0=c(1.091714e-02, 1.002960e-02, -5.990785e-04
     }
   }
 
-#  return(list(par_est = list(x0=CA_par[iter_count,1:3], delta=CA_par[iter_count,4:6], kappa=CA_par[iter_count,7:9], sigma=CA_par[iter_count,10:12], r1=CA_par[iter_count,13], r2=CA_par[iter_count,14], rc=CA_par[iter_count,15]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma, r))+1], CA_table = CA_par[1:iter_count,]))
-  return(list(par_est = list(x0=CA_par[iter_count,1:3], delta=CA_par[iter_count,4:6], kappa=CA_par[iter_count,7:9], sigma=CA_par[iter_count,10:12], r=CA_par[iter_count,c(13:15)]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma, r))+1], CA_table = CA_par[1:iter_count,]))
+  return(list(par_est = list(x0=CA_par[iter_count,1:3], delta=CA_par[iter_count,4:6], kappa=CA_par[iter_count,7:9], sigma=CA_par[iter_count,10:12], r1=CA_par[iter_count,13], r2=CA_par[iter_count,14], rc=CA_par[iter_count,15]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma, r))+1], CA_table = CA_par[1:iter_count,]))
 }
 
 
@@ -1494,7 +1493,6 @@ co_asc_AFRNSi <- function(mu_bar, x0=c(1.091714e-02, 1.002960e-02), delta=-8.304
     }
   }
 
-#  return(list(par_est = list(x0=CA_par[iter_count,1:2], delta=CA_par[iter_count,3], kappa=CA_par[iter_count,4:5], sigma=CA_par[iter_count,6:7], r1=CA_par[iter_count,8], r2=CA_par[iter_count,9], rc=CA_par[iter_count,10]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma, r))+1], CA_table = CA_par[1:iter_count,]))
   return(list(par_est = list(x0=CA_par[iter_count,1:2], delta=CA_par[iter_count,3], kappa=CA_par[iter_count,4:5], sigma=CA_par[iter_count,6:7], r=CA_par[iter_count,8:10]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma, r))+1], CA_table = CA_par[1:iter_count,]))
 }
 
@@ -1630,6 +1628,5 @@ co_asc_CIR <- function(mu_bar, x0=c(1.611524e-03, 5.763081e-03, 1.208483e-02), d
     }
   }
 
-#  return(list(par_est = list(x0=CA_par[iter_count,1:n_factors], delta=CA_par[iter_count,((n_factors + 1):(n_factors*2))], kappa=CA_par[iter_count,((n_factors*2 + 1):(n_factors*3))], sigma=CA_par[iter_count,((n_factors*3 + 1):(n_factors*4))], theta_P=CA_par[iter_count,((n_factors*4 + 1):(n_factors*5))], r1=CA_par[iter_count,(n_factors*5 + 1)], r2=CA_par[iter_count,(n_factors*5 + 2)], rc=CA_par[iter_count,(n_factors*5 + 3)]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma, theta_P, r))+1], CA_table = CA_par[1:iter_count,]))
-  return(list(par_est = list(x0=CA_par[iter_count,1:n_factors], delta=CA_par[iter_count,((n_factors + 1):(n_factors*2))], kappa=CA_par[iter_count,((n_factors*2 + 1):(n_factors*3))], sigma=CA_par[iter_count,((n_factors*3 + 1):(n_factors*4))], theta_P=CA_par[iter_count,((n_factors*4 + 1):(n_factors*5))], r=CA_par[iter_count,((n_factors*5 + 1):(n_factors*6))]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma, theta_P, r))+1], CA_table = CA_par[1:iter_count,]))
+  return(list(par_est = list(x0=CA_par[iter_count,1:n_factors], delta=CA_par[iter_count,((n_factors + 1):(n_factors*2))], kappa=CA_par[iter_count,((n_factors*2 + 1):(n_factors*3))], sigma=CA_par[iter_count,((n_factors*3 + 1):(n_factors*4))], theta_P=CA_par[iter_count,((n_factors*4 + 1):(n_factors*5))], r1=CA_par[iter_count,(n_factors*5 + 1)], r2=CA_par[iter_count,(n_factors*5 + 2)], rc=CA_par[iter_count,(n_factors*5 + 3)]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma, theta_P, r))+1], CA_table = CA_par[1:iter_count,]))
 }
