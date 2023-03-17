@@ -201,7 +201,7 @@ xfilter <- function(model="BS", fact_dep=FALSE, n_factors=3, parameters, data=da
 #' data(toydata)
 #' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
 #' @export
-xsmooth <- function(X_t, X_t_c, S_t, S_t_c, kappa){
+xsmooth <- function(filterobject, kappa){
   smooth <- RTS_sm_bas(filterobject$X_t, filterobject$X_t_c, filterobject$S_t, filterobject$S_t_c, kappa, (ncol(filterobject$X_t)-1))
   return(smooth)
 }
