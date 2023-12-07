@@ -117,7 +117,7 @@ co_asc_BSi <- function(mu_bar, x0=c(6.960591e-03, 9.017154e-03, 5.091784e-03), d
       neg_loglikelihood <- nLL_BSi_uKD_CA(x0_par, delta_par, kappa_par, l_sigma_par, l_r_par, mu_bar)
 
       print(paste("log_lik", round(CA_par[iter_count, length(c(x0, delta, kappa, sigma, r))+1],2)))
-      print(paste(iter_count, "% iteration"))
+      print(paste("Iteration ", iter_count))
       print(paste("---------------------------------"))
 
       iter_count <- iter_count + 1
@@ -337,7 +337,7 @@ co_asc_BSd_2F <- function(mu_bar, x0=c(2.191140e-03, -8.855686e-03), delta=c(-5.
       neg_loglikelihood <- nLL_BSd_2F_uKD_CA(x0_par, delta_par, kappa_par, dg_l_Sigma_chol_par, odg_Sigma_chol_par, l_r_par, mu_bar)
 
       print(paste("log_lik", round(CA_par[iter_count, length(c(x0, delta, kappa, sigma_dg, Sigma_cov, r))+1],2)))
-      print(paste(iter_count, "% iteration"))
+      print(paste("Iteration ", iter_count))
       print(paste("---------------------------------"))
 
       iter_count <- iter_count + 1
@@ -410,7 +410,7 @@ co_asc_BSd_3F <- function(mu_bar, x0=c(2.191140e-03, -8.855686e-03, 2.711990e-02
       neg_loglikelihood <- nLL_BSd_3F_uKD_CA(x0_par, delta_par, kappa_par, dg_l_Sigma_chol_par, odg_Sigma_chol_par, l_r_par, mu_bar)
 
       print(paste("log_lik", round(CA_par[iter_count, length(c(x0, delta, kappa, sigma_dg, Sigma_cov, r))+1],2)))
-      print(paste(iter_count, "% iteration"))
+      print(paste("Iteration ", iter_count))
       print(paste("---------------------------------"))
 
       iter_count <- iter_count + 1
@@ -542,7 +542,7 @@ co_asc_GMki <- function(mu_bar, x0=c(2.191140e-03, -8.855686e-03), delta=c(-5.17
       neg_loglikelihood <- nLL_GMki_uKD_CA(x0_par, delta_par, kappa_par, l_gamma_par, l_sigma_par, l_r_par, mu_bar)
 
       print(paste("log_lik", round(CA_par[iter_count, length(c(x0, delta, kappa, gamma, sigma, r))+1],2)))
-      print(paste(iter_count, "% iteration"))
+      print(paste("Iteration ", iter_count))
       print(paste("---------------------------------"))
 
       iter_count <- iter_count + 1
@@ -810,7 +810,7 @@ co_asc_AFNSi <- function(mu_bar, x0=c(1.091714e-02, 1.002960e-02, -5.990785e-04)
       neg_loglikelihood <- nLL_AFNSi_uKD_CA(x0_par, delta_par, kappa_par, l_sigma_par, l_r_par, mu_bar)
 
       print(paste("log_lik", round(CA_par[iter_count, length(c(x0, delta, kappa, sigma, r))+1],2)))
-      print(paste(iter_count, "% iteration"))
+      print(paste("Iteration ", iter_count))
       print(paste("---------------------------------"))
 
       iter_count <- iter_count + 1
@@ -953,7 +953,7 @@ co_asc_AFNSd <- function(mu_bar, x0=c(9.582516e-03, 1.094110e-02, -1.503155e-03)
       neg_loglikelihood <- nLL_AFNSd_uKD_CA(x0_par, delta_par, kappa_par, dg_l_Sigma_chol_par, odg_Sigma_chol_par, l_r_par, mu_bar)
 
       print(paste("log_lik", round(CA_par[iter_count, length(c(x0, delta, kappa, sigma, r))+1],2)))
-      print(paste(iter_count, "% iteration"))
+      print(paste("Iteration ", iter_count))
       print(paste("---------------------------------"))
 
       iter_count <- iter_count + 1
@@ -1081,7 +1081,7 @@ co_asc_AFGNSi <- function(mu_bar, x0=c(1.091714e-02, 1.002960e-02, 5.990785e-04,
       neg_loglikelihood <- nLL_AFGNSi_uKD_CA(x0_par, delta_par, kappa_par, l_sigma_par, l_r_par, mu_bar)
 
       print(paste("log_lik", round(CA_par[iter_count, length(c(x0, delta, kappa, sigma, r))+1],2)))
-      print(paste(iter_count, "% iteration"))
+      print(paste("Iteration ", iter_count))
       print(paste("---------------------------------"))
 
       iter_count <- iter_count + 1
@@ -1231,7 +1231,7 @@ co_asc_AFGNSd <- function(mu_bar, x0=c(1.091714e-02, 1.002960e-02, 5.990785e-04,
       neg_loglikelihood <- nLL_AFGNSd_uKD_CA(x0_par, delta_par, kappa_par, dg_l_Sigma_chol_par, odg_Sigma_chol1_par, odg_Sigma_chol2_par, l_r_par, mu_bar)
 
       print(paste("log_lik", round(CA_par[iter_count, length(c(x0, delta, kappa, sigma_dg, Sigma_cov, r))+1],2)))
-      print(paste(iter_count, "% iteration"))
+      print(paste("Iteration ", iter_count))
       print(paste("---------------------------------"))
 
       iter_count <- iter_count + 1
@@ -1359,7 +1359,7 @@ co_asc_AFUNSi <- function(mu_bar, x0=c(1.091714e-02, 1.002960e-02, -5.990785e-04
       neg_loglikelihood <- nLL_AFUNSi_uKD_CA(x0_par, delta_par, kappa_par, l_sigma_par, l_r_par, mu_bar)
 
       print(paste("log_lik", round(CA_par[iter_count, length(c(x0, delta, kappa, sigma, r))+1],2)))
-      print(paste(iter_count, "% iteration"))
+      print(paste("Iteration ", iter_count))
       print(paste("---------------------------------"))
 
       iter_count <- iter_count + 1
@@ -1486,7 +1486,7 @@ co_asc_AFRNSi <- function(mu_bar, x0=c(1.091714e-02, 1.002960e-02), delta=-8.304
       neg_loglikelihood <- nLL_AFRNSi_uKD_CA(x0_par, delta_par, kappa_par, l_sigma_par, l_r_par, mu_bar)
 
       print(paste("log_lik", round(CA_par[iter_count, length(c(x0, delta, kappa, sigma, r))+1],2)))
-      print(paste(iter_count, "% iteration"))
+      print(paste("Iteration ", iter_count))
       print(paste("---------------------------------"))
 
       iter_count <- iter_count + 1
@@ -1621,7 +1621,7 @@ co_asc_CIR <- function(mu_bar, x0=c(1.611524e-03, 5.763081e-03, 1.208483e-02), d
       neg_loglikelihood <- nLL_CIR_uKD_CA_bd(l_x0_par, delta_par, l_kappa_par, l_sigma_par, l_theta_P_par, l_r_par, mu_bar)
 
       print(paste("log_lik", round(CA_par[iter_count, length(c(x0, delta, kappa, sigma, theta_P, r))+1],2)))
-      print(paste(iter_count, "% iteration"))
+      print(paste("Iteration ", iter_count))
       print(paste("---------------------------------"))
 
       iter_count <- iter_count + 1
