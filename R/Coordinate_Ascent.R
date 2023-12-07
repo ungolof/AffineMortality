@@ -345,7 +345,7 @@ co_asc_BSd_2F <- function(mu_bar, x0=c(2.191140e-03, -8.855686e-03), delta=c(-5.
   }
 
   #return(list(par_est = list(x0=CA_par[iter_count,c(1:2)], delta=CA_par[iter_count,3:5], kappa=CA_par[iter_count,c(6:7)], Sigma=list(sigma_11 = CA_par[iter_count,8], sigma_21 = CA_par[iter_count,9], sigma_22 = CA_par[iter_count,10]), r1=CA_par[iter_count,11], r2=CA_par[iter_count,12], rc=CA_par[iter_count,13]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma_dg, Sigma_cov, r))+1], CA_table = CA_par[1:iter_count,]))
-  return(list(par_est = list(x0=CA_par[iter_count,c(1:2)], delta=CA_par[iter_count,3:5], kappa=CA_par[iter_count,c(6:7)], sigma_dg=sqrt(CA_par[iter_count,c(8,10)]), Sigma_cov=CA_par[iter_count,9], r1=CA_par[iter_count,11], r2=CA_par[iter_count,12], rc=CA_par[iter_count,13]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma_dg, Sigma_cov, r))+1], CA_table = CA_par[1:iter_count,]))
+  return(list(par_est = list(x0=CA_par[iter_count,c(1:2)], delta=CA_par[iter_count,3:5], kappa=CA_par[iter_count,c(6:7)], sigma_dg=CA_par[iter_count,c(8,10)], Sigma_cov=CA_par[iter_count,9], r1=CA_par[iter_count,11], r2=CA_par[iter_count,12], rc=CA_par[iter_count,13]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma_dg, Sigma_cov, r))+1], CA_table = CA_par[1:iter_count,]))
 }
 
 # - Directly provide the parameters
@@ -418,7 +418,7 @@ co_asc_BSd_3F <- function(mu_bar, x0=c(2.191140e-03, -8.855686e-03, 2.711990e-02
   }
 
   #return(list(par_est = list(x0=CA_par[iter_count,c(1:3)], delta=CA_par[iter_count,4:9], kappa=CA_par[iter_count,c(10:12)], Sigma=list(sigma_11 = CA_par[iter_count,13], sigma_21 = CA_par[iter_count,14], sigma_22 = CA_par[iter_count,15], sigma_31 = CA_par[iter_count,16], sigma_32 = CA_par[iter_count,17], sigma_33 = CA_par[iter_count,18]), r1=CA_par[iter_count,19], r2=CA_par[iter_count,20], rc=CA_par[iter_count,21]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma_dg, Sigma_cov, r))+1], CA_table = CA_par[1:iter_count,]))
-  return(list(par_est = list(x0=CA_par[iter_count,c(1:3)], delta=CA_par[iter_count,4:9], kappa=CA_par[iter_count,c(10:12)], sigma_dg=sqrt(CA_par[iter_count,c(13,15,18)]), Sigma_cov=CA_par[iter_count,c(14,16,17)], r1=CA_par[iter_count,19], r2=CA_par[iter_count,20], rc=CA_par[iter_count,21]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma_dg, Sigma_cov, r))+1], CA_table = CA_par[1:iter_count,]))
+  return(list(par_est = list(x0=CA_par[iter_count,c(1:3)], delta=CA_par[iter_count,4:9], kappa=CA_par[iter_count,c(10:12)], sigma_dg=CA_par[iter_count,c(13,15,18)], Sigma_cov=CA_par[iter_count,c(14,16,17)], r1=CA_par[iter_count,19], r2=CA_par[iter_count,20], rc=CA_par[iter_count,21]), log_lik = CA_par[iter_count,length(c(x0, delta, kappa, sigma_dg, Sigma_cov, r))+1], CA_table = CA_par[1:iter_count,]))
 }
 
 #============= - Gaussian - Makeham (2 factor) - ==============
