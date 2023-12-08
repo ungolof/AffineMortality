@@ -917,7 +917,8 @@ co_asc_AFNSd <- function(mu_bar, x0=c(9.582516e-03, 1.094110e-02, -1.503155e-03)
     x0_par <- x0_opt_AFNSd_KD$par
     print(paste(c('x0_L', 'x0_S', 'x0_C'), round(x0_par,3)))
 
-    delta_opt_AFNSd_KD <- optim(delta_par, nLL_AFNSd_uKD_CA, mu_bar=mu_bar, x0=x0_par, kappa=kappa_par, dg_l_Sigma_chol=dg_l_Sigma_chol_par, odg_Sigma_chol=odg_Sigma_chol_par, l_r=l_r_par, gr = NULL, method = "BFGS", hessian = TRUE, control=list(maxit = 10000))
+    suppressWarnings(
+    delta_opt_AFNSd_KD <- optim(delta_par, nLL_AFNSd_uKD_CA, mu_bar=mu_bar, x0=x0_par, kappa=kappa_par, dg_l_Sigma_chol=dg_l_Sigma_chol_par, odg_Sigma_chol=odg_Sigma_chol_par, l_r=l_r_par, gr = NULL, method = "BFGS", hessian = TRUE, control=list(maxit = 10000)))
     delta_par <- delta_opt_AFNSd_KD$par
     print(paste("delta", round(delta_par,3)))
 
