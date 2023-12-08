@@ -776,8 +776,8 @@ co_asc_AFNSi <- function(mu_bar, x0=c(1.091714e-02, 1.002960e-02, -5.990785e-04)
     x0_opt_AFNSi_KD <- optim(x0_par, nLL_AFNSi_uKD_CA, mu_bar=mu_bar, delta=delta_par, kappa=kappa_par, l_sigma=l_sigma_par, l_r=l_r_par, gr = NULL, method = "Nelder-Mead", hessian = TRUE, control=list(maxit = 10000))
     x0_par <- x0_opt_AFNSi_KD$par
     print(paste(c('x0_L', 'x0_S', 'x0_C'), round(x0_par,3)))
-
-    delta_opt_AFNSi_KD <- optim(delta_par, nLL_AFNSi_uKD_CA, mu_bar=mu_bar, x0=x0_par, kappa=kappa_par, l_sigma=l_sigma_par, l_r=l_r_par, gr = NULL, method = "Nelder-Mead", hessian = TRUE, control=list(maxit = 10000))
+    suppressWarnings(
+    delta_opt_AFNSi_KD <- optim(delta_par, nLL_AFNSi_uKD_CA, mu_bar=mu_bar, x0=x0_par, kappa=kappa_par, l_sigma=l_sigma_par, l_r=l_r_par, gr = NULL, method = "Nelder-Mead", hessian = TRUE, control=list(maxit = 10000)))
     delta_par <- delta_opt_AFNSi_KD$par
     print(paste("delta", round(delta_par,3)))
 
