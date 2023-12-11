@@ -5,11 +5,11 @@
 \title{prob_neg_mu}
 \usage{
 prob_neg_mu(
-  model = "BS",
-  fact_dep = FALSE,
+  model = c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"),
+  fact_dep = c(FALSE, TRUE),
   n_factors = 3,
-  parameters = 0,
-  data = data_default,
+  parameters,
+  data,
   years_proj = 1,
   n_simulations = 1e+05
 )
@@ -33,7 +33,7 @@ prob_neg_mu(
 A vector of probabilities of negative rates for each age considered in the dataset.
 }
 \description{
-Probability of negative rates when projected over n years, based on simulated values of the latent variables
+Probability of negative rates when projected over `n` years, based on simulated values of the latent variables
 }
 \examples{
 data(toydata)

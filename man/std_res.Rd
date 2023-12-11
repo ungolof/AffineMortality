@@ -5,11 +5,11 @@
 \title{std_res}
 \usage{
 std_res(
-  model = "BS",
-  fact_dep = FALSE,
+  model = c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"),
+  fact_dep = c(FALSE, TRUE),
   n_factors = 3,
-  parameters = 0,
-  data = data_default
+  parameters,
+  data
 )
 }
 \arguments{
@@ -24,10 +24,10 @@ std_res(
 \item{data}{Table with the average mortality rates}
 }
 \value{
-Matrix with the standardized residuals given model and parameters. Their calculation follows from Ungolo et. al. (2022)
+Matrix with the standardized residuals given model and parameters.
 }
 \description{
-Function returning the standardized residuals
+Function returning the standardized residuals using the method of Ungolo et. al. (2023)
 }
 \examples{
 data(toydata)

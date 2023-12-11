@@ -5,12 +5,12 @@
 \title{par_cov}
 \usage{
 par_cov(
-  method = "MI",
-  model = "BS",
-  fact_dep = FALSE,
+  method = c("MI", "BS"),
+  model = c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"),
+  fact_dep = c(FALSE, TRUE),
   n_factors = 3,
   parameters,
-  data = data_default,
+  data,
   D_se = 50,
   BS_s = 500,
   t_excl = 4,
@@ -24,17 +24,17 @@ par_cov(
 
 \item{model}{Affine model. E.g. for the Blackburn-Sherris model we have model="BS", and so on}
 
-\item{fact_dep}{Boolean parameter indicating whether estimate models with factor dependence (fact_dep=TRUE) or independence}
+\item{fact_dep}{Boolean parameter indicating whether estimate models with factor dependence (fact_dep=TRUE) or independence (fact_dep=FALSE)}
 
 \item{n_factors}{Number of factors. For some models, these are set by default}
 
-\item{parameters}{Starting value for the parameters. If not set, then default values will be used}
+\item{parameters}{Starting value for the parameters.}
 
 \item{data}{Table with the average mortality rates}
 
 \item{D_se}{Number of Iterations if Multiple Imputation is used (default set to 50)}
 
-\item{BS_s}{Number of Boostrap sample if this method is used}
+\item{BS_s}{Number of Boostrap samples if this method is used}
 
 \item{t_excl}{Number of time-periods to be excluded for stability of the Bootstrap method}
 
@@ -45,7 +45,7 @@ par_cov(
 \item{wd}{Working directory for saving the partial output of the estimation process}
 }
 \value{
-A list with the covariance matrix of the paramter estimates and their standard errors
+A list with the covariance matrix of the parameter estimates `Cov_par_est` and their standard errors `St_err`
 }
 \description{
 Estimation of the uncertainty of the parameters by Bootstrap or Multiple imputation
