@@ -8,5 +8,5 @@ Description: Estimation, comparison and projection of affine mortality models
 License: GNU 3.0
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
 Depends: expm, mvtnorm, TruncatedNormal, MASS, heatmaply

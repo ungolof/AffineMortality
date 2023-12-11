@@ -26,12 +26,12 @@
 #' @param wd Working directory for saving the partial output of the estimation process
 #'
 #' @return A list with components:
-#' * Name of the model
-#' * Value of the parameter estimates
-#' * Log-likelihood function value
-#' * Table with the value of the parameters at each iteration
-#' * Number of model parameters
-#' * Value of Akaike Information Criterion
+#' * `model` Name of the model
+#' * `fit` List with parameter estimates, log-likelihood function value, and table of their value at each iteration
+#' * `n.parameters` Number of parameters of the model
+#' * `AIC` Value of the Akaike Information Criterion of the model
+#' * `BIC` Value of the Bayesian Information Criterion of the model
+
 #' @examples
 #' data(toydata)
 #' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
