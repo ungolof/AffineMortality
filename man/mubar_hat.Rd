@@ -5,11 +5,11 @@
 \title{mubar_hat}
 \usage{
 mubar_hat(
-  model = "BS",
-  fact_dep = FALSE,
+  model = c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"),
+  fact_dep = c(FALSE, TRUE),
   n_factors = 3,
-  parameters = 0,
-  data = data_default
+  parameters,
+  data
 )
 }
 \arguments{
@@ -24,7 +24,7 @@ mubar_hat(
 \item{data}{Table with the average mortality rates}
 }
 \value{
-Matrix with the fitted mu_bar rates given model and parameters
+Matrix with the fitted `mu_bar` rates given model and parameters
 }
 \description{
 Function returning the fitted values of the average mortality rates

@@ -5,11 +5,11 @@
 \title{affine_fit}
 \usage{
 affine_fit(
-  model = "BS",
-  fact_dep = FALSE,
+  model = c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"),
+  fact_dep = c(FALSE, TRUE),
   n_factors = 3,
-  data = data_default,
-  st_val = 0,
+  data,
+  st_val,
   max_iter = 200,
   tolerance = 0.1,
   wd = 0
@@ -24,20 +24,24 @@ affine_fit(
 
 \item{data}{Table with the average mortality rates (ages on the rows and years on the columns)}
 
-\item{st_val}{Starting value for the parameters. If not set, then default values will be used}
+\item{st_val}{Starting value for the parameters to be supplied as list}
 
-\item{max_iter}{Maximum number of iterations for the Coordinate Ascent estimation algorithm in absence of convergence}
+\item{max_iter}{Maximum number of iterations for the Coordinate Ascent estimation algorithm in absence of convergence. Default value set to 200}
 
-\item{tolerance}{Minimum value of increase of the log-likelihood value before convergence}
+\item{tolerance}{Minimum value of increase of the log-likelihood value before convergence. Default value set to 0.1}
 
 \item{wd}{Working directory for saving the partial output of the estimation process}
 }
 \value{
-A data frame object that contains a summary of a sample that
-    can later be converted to a TeX output using \code{overview_print}
+A list with components:
+\item{model}{ Name of the model}
+\item{fit}{ List with parameter estimates, log-likelihood function value, and table of their value at each iteration}
+\item{n.parameters}{ Number of parameters of the model}
+\item{AIC}{ Value of the Akaike Information Criterion of the model}
+\item{BIC}{ Value of the Bayesian Information Criterion of the model}
 }
 \description{
-Estimation of affine mortality models
+Estimation of the parameters of affine mortality models using the gradient-free Nelder-Mead algorithm for groups of parameters.
 }
 \examples{
 data(toydata)

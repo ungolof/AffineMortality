@@ -5,11 +5,11 @@
 \title{affine_project}
 \usage{
 affine_project(
-  model = "BS",
-  fact_dep = FALSE,
+  model = c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"),
+  fact_dep = c(FALSE, TRUE),
   n_factors = 3,
-  parameters = 0,
-  data = data_default,
+  parameters,
+  data,
   years_proj = 1
 )
 }
