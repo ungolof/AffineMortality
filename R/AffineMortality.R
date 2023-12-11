@@ -14,7 +14,7 @@
 ## - eventually add the option for using subplex optimization
 #' @title affine_fit
 #'
-#' @description Estimation of affine mortality models
+#' @description Estimation of the parameters of affine mortality models using the gradient-free Nelder-Mead algorithm for groups of parameters.
 #'
 #' @param model Specific model to be fit. E.g. for the Blackburn-Sherris model we have model="BS", and so on
 #' @param fact_dep Boolean parameter indicating whether estimate models with factor dependence (fact_dep=TRUE) or independence (fact_dep=FALSE)
