@@ -20,18 +20,23 @@
 #' @param fact_dep Boolean parameter indicating whether estimate models with factor dependence (fact_dep=TRUE) or independence (fact_dep=FALSE)
 #' @param n_factors Number of factors. For some models, these are set by default (e.g. n_factors=3 for AFNS models)
 #' @param data Table with the average mortality rates (ages on the rows and years on the columns)
-#' @param st_val Starting value for the parameters. If not set, then default values will be used
-#' @param max_iter Maximum number of iterations for the Coordinate Ascent estimation algorithm in absence of convergence
-#' @param tolerance Minimum value of increase of the log-likelihood value before convergence
+#' @param st_val Starting value for the parameters to be supplied as list
+#' @param max_iter Maximum number of iterations for the Coordinate Ascent estimation algorithm in absence of convergence. Default value set to 200
+#' @param tolerance Minimum value of increase of the log-likelihood value before convergence. Default value set to 0.1
 #' @param wd Working directory for saving the partial output of the estimation process
 #'
-#' @return A data frame object that contains a summary of a sample that
-#'     can later be converted to a TeX output using \code{overview_print}
+#' @return A list with components:
+#' * Name of the model
+#' * Value of the parameter estimates
+#' * Log-likelihood function value
+#' * Table with the value of the parameters at each iteration
+#' * Number of model parameters
+#' * Value of Akaike Information Criterion
 #' @examples
 #' data(toydata)
 #' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
 #' @export
-affine_fit <- function(model="BS", fact_dep=FALSE, n_factors=3, data=data_default, st_val, max_iter=200, tolerance=0.1, wd=0){
+affine_fit <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"), fact_dep=FALSE, n_factors=3, data, st_val, max_iter=200, tolerance=0.1, wd=0){
 
   if(model=="AFNS"){
     if(fact_dep==TRUE){
