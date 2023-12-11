@@ -5,11 +5,11 @@
 \title{xfilter}
 \usage{
 xfilter(
-  model = "BS",
-  fact_dep = FALSE,
+  model = c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"),
+  fact_dep = c(FALSE, TRUE),
   n_factors = 3,
-  parameters = 0,
-  data = data_default
+  parameters,
+  data
 )
 }
 \arguments{
@@ -24,10 +24,14 @@ xfilter(
 \item{data}{Table with the average mortality rates}
 }
 \value{
-A list with the mean of the latent process for the update step (X_t) and for the prediction step (X_t_c) and for the corresponding covariance matrices S_t and S_t_c.
+A list with the following components:
+\item{X_t}{ Mean of the latent process X(t) for the update step}
+\item{X_t_c}{ Mean of the latent process X(t) for the prediction step}
+\item{S_t}{ Covariance matrix of the latent process X(t) for the update step}
+\item{S_t_c.}{ Covariance matrix of the latent process X(t) for the prediction step}
 }
 \description{
-Estimation of mean and variance of the latent states
+Estimation of mean and variance of the latent states using the univariate Kalman filtering procedure of Koopman and Durbin (2000)
 }
 \examples{
 data(toydata)
