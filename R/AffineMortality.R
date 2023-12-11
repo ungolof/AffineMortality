@@ -36,7 +36,7 @@
 #' data(toydata)
 #' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
 #' @export
-affine_fit <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"), fact_dep=FALSE, n_factors=3, data, st_val, max_iter=200, tolerance=0.1, wd=0){
+affine_fit <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"), fact_dep=c(FALSE, TRUE), n_factors=3, data, st_val, max_iter=200, tolerance=0.1, wd=0){
 
   if(model=="AFNS"){
     if(fact_dep==TRUE){
@@ -104,7 +104,7 @@ affine_fit <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "
 # - Filtering distribution (xfilter)
 #' @title xfilter
 #'
-#' @description Estimation of mean and variance of the latent states
+#' @description Estimation of mean and variance of the latent states using the univariate Kalman filtering procedure of Koopman and Durbin (2000)
 #'
 #' @param model Affine model. E.g. for the Blackburn-Sherris model we have model="BS", and so on
 #' @param fact_dep Boolean parameter indicating whether estimate models with factor dependence (fact_dep=TRUE) or independence
@@ -112,12 +112,17 @@ affine_fit <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "
 #' @param parameters Value of the parameters. If not set, then default values will be used
 #' @param data Table with the average mortality rates
 #'
-#' @return A list with the mean of the latent process for the update step (X_t) and for the prediction step (X_t_c) and for the corresponding covariance matrices S_t and S_t_c.
+#' @return A list with the following components:
+#' \item{X_t}{ Mean of the latent process X(t) for the update step}
+#' \item{X_t_c}{ Mean of the latent process X(t) for the prediction step}
+#' \item{S_t}{ Covariance matrix of the latent process X(t) for the update step}
+#' \item{S_t_c.}{ Covariance matrix of the latent process X(t) for the prediction step}
+
 #' @examples
 #' data(toydata)
 #' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
 #' @export
-xfilter <- function(model="BS", fact_dep=FALSE, n_factors=3, parameters, data=data_default){
+xfilter <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"), fact_dep=c(FALSE, TRUE), n_factors=3, parameters, data){
   if(model=="AFNS"){
     if(fact_dep==TRUE){
       filter <- KF_AFNSd_uKD(x0=parameters$x0, delta=parameters$delta, kappa=parameters$kappa, sigma_dg = parameters$sigma_dg, Sigma_cov = parameters$Sigma_cov, r=c(parameters$r1, parameters$r2, parameters$rc), mu_bar=data)
@@ -193,7 +198,7 @@ xfilter <- function(model="BS", fact_dep=FALSE, n_factors=3, parameters, data=da
 #======================== - Smoothing - ===================================
 #' @title xsmooth
 #'
-#' @description Estimation of mean and covariance of the distribution of the smoothed latent process X(t) using the Rauch-Tung-Striebel smoother
+#' @description Estimation of mean and covariance of the distribution of the smoothed latent process X(t) using the Rauch-Tung-Striebel procedure
 #'
 #' @param X_t Mean of the filtered latent process X(t) at the time-update step (X_t from the filtering process)
 #' @param X_t_c Mean of the filtered latent process X(t) at the prediction step (X_t_c from the filtering process)
@@ -201,7 +206,7 @@ xfilter <- function(model="BS", fact_dep=FALSE, n_factors=3, parameters, data=da
 #' @param S_t_c Covariance of the filtered latent process X(t) at the prediction step (S_t_c from the filtering process)
 #' @param kappa parameter kappa from the real-world dynamics of the latent variables
 #'
-#' @return List with mean and covariance of the distribution of thelatent process X(t)
+#' @return List with mean `X_t_sm` and covariance `S_t_sm` of the distribution of the latent process X(t)
 #' @examples
 #' data(toydata)
 #' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
@@ -224,12 +229,12 @@ xsmooth <- function(filterobject, kappa){
 #' @param parameters Starting value for the parameters. If not set, then default values will be used
 #' @param data Table with the average mortality rates
 #'
-#' @return Matrix with the fitted mu_bar rates given model and parameters
+#' @return Matrix with the fitted `mu_bar` rates given model and parameters
 #' @examples
 #' data(toydata)
 #' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
 #' @export
-mubar_hat <- function(model="BS", fact_dep=FALSE, n_factors=3, parameters, data=data_default){
+mubar_hat <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"), fact_dep=c(FALSE, TRUE), n_factors=3, parameters, data){
   if(model=="AFNS"){
     if(fact_dep==TRUE){
       fitted <- mu_bar_hat_AFNSd(x0=parameters$x0, delta=parameters$delta, kappa=parameters$kappa, sigma_dg = parameters$sigma_dg, Sigma_cov = parameters$Sigma_cov, r=c(parameters$r1, parameters$r2, parameters$rc), mu_bar=data)
@@ -303,7 +308,7 @@ mubar_hat <- function(model="BS", fact_dep=FALSE, n_factors=3, parameters, data=
 ## - Fitted rates
 #' @title std_res
 #'
-#' @description Function returning the standardized residuals
+#' @description Function returning the standardized residuals using the method of Ungolo et. al. (2023)
 #'
 #' @param model Affine model. E.g. for the Blackburn-Sherris model we have model="BS", and so on
 #' @param fact_dep Boolean parameter indicating whether estimate models with factor dependence (fact_dep=TRUE) or independence
@@ -311,12 +316,12 @@ mubar_hat <- function(model="BS", fact_dep=FALSE, n_factors=3, parameters, data=
 #' @param parameters Starting value for the parameters. If not set, then default values will be used
 #' @param data Table with the average mortality rates
 #'
-#' @return Matrix with the standardized residuals given model and parameters. Their calculation follows from Ungolo et. al. (2022)
+#' @return Matrix with the standardized residuals given model and parameters.
 #' @examples
 #' data(toydata)
 #' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
 #' @export
-std_res <- function(model="BS", fact_dep=FALSE, n_factors=3, parameters, data=data_default){
+std_res <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"), fact_dep=c(FALSE, TRUE), n_factors=3, parameters, data){
   if(model=="AFNS"){
     if(fact_dep==TRUE){
     } else{
@@ -389,7 +394,7 @@ std_res <- function(model="BS", fact_dep=FALSE, n_factors=3, parameters, data=da
 ## - Probability of negative rates
 #' @title prob_neg_mu
 #'
-#' @description Probability of negative rates when projected over n years, based on simulated values of the latent variables
+#' @description Probability of negative rates when projected over `n` years, based on simulated values of the latent variables
 #'
 #' @param model Affine model. E.g. for the Blackburn-Sherris model we have model="BS", and so on
 #' @param fact_dep Boolean parameter indicating whether estimate models with factor dependence (fact_dep=TRUE) or independence
@@ -404,7 +409,7 @@ std_res <- function(model="BS", fact_dep=FALSE, n_factors=3, parameters, data=da
 #' data(toydata)
 #' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
 #' @export
-prob_neg_mu <- function(model="BS", fact_dep=FALSE, n_factors=3, parameters, data=data_default, years_proj=1, n_simulations=100000){
+prob_neg_mu <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"), fact_dep=c(FALSE, TRUE), n_factors=3, parameters, data, years_proj=1, n_simulations=100000){
   if(model=="AFNS"){
     if(fact_dep==TRUE){
       pr_neg <- pr_neg_rates_f_AFNSd(n_sim=n_simulations, x0=parameters$x0, delta=parameters$delta, kappa=parameters$kappa, sigma_dg = parameters$sigma_dg, Sigma_cov = parameters$Sigma_cov, r=c(parameters$r1, parameters$r2, parameters$rc), data, yrs_proj=years_proj)
@@ -496,7 +501,7 @@ prob_neg_mu <- function(model="BS", fact_dep=FALSE, n_factors=3, parameters, dat
 #' data(toydata)
 #' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
 #' @export
-affine_project <- function(model="BS", fact_dep=FALSE, n_factors=3, parameters, data=data_default, years_proj=1){
+affine_project <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"), fact_dep=c(FALSE, TRUE), n_factors=3, parameters, data, years_proj=1){
   if(model=="AFNS"){
     if(fact_dep==TRUE){
       projection <- S_t_AFNSd_proj(x0=parameters$x0, delta=parameters$delta, kappa=parameters$kappa, sigma_dg = parameters$sigma_dg, Sigma_cov = parameters$Sigma_cov, r=c(parameters$r1, parameters$r2, parameters$rc), data, proj_years=years_proj)
@@ -602,23 +607,23 @@ heatmap_res <- function(residuals, color=TRUE){
 #'
 #' @param method MI if Multiple Imputation or Bootstrap if the Bootstrap is desired
 #' @param model Affine model. E.g. for the Blackburn-Sherris model we have model="BS", and so on
-#' @param fact_dep Boolean parameter indicating whether estimate models with factor dependence (fact_dep=TRUE) or independence
+#' @param fact_dep Boolean parameter indicating whether estimate models with factor dependence (fact_dep=TRUE) or independence (fact_dep=FALSE)
 #' @param n_factors Number of factors. For some models, these are set by default
-#' @param parameters Starting value for the parameters. If not set, then default values will be used
+#' @param parameters Starting value for the parameters.
 #' @param data Table with the average mortality rates
 #' @param D_se Number of Iterations if Multiple Imputation is used (default set to 50)
-#' @param BS_s Number of Boostrap sample if this method is used
+#' @param BS_s Number of Boostrap samples if this method is used
 #' @param t_excl Number of time-periods to be excluded for stability of the Bootstrap method
 #' @param max_iter Maximum number of iterations for the Coordinate Ascent estimation algorithm in absence of convergence
 #' @param tolerance Minimum value of improvement of the log-likelihood value before convergence
 #' @param wd Working directory for saving the partial output of the estimation process
 #'
-#' @return A list with the covariance matrix of the paramter estimates and their standard errors
+#' @return A list with the covariance matrix of the parameter estimates `Cov_par_est` and their standard errors `St_err`
 #' @examples
 #' data(toydata)
 #' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
 #' @export
-par_cov <- function(method="MI", model="BS", fact_dep=FALSE, n_factors=3, parameters, data=data_default, D_se=50, BS_s=500, t_excl=4, max_iter=200, tolerance=0.1, wd=0){
+par_cov <- function(method=c("MI", 'BS'), model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"), fact_dep=c(FALSE, TRUE), n_factors=3, parameters, data, D_se=50, BS_s=500, t_excl=4, max_iter=200, tolerance=0.1, wd=0){
 
   if(method=="MI"){
     if(model=="AFNS"){
