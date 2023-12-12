@@ -16,7 +16,7 @@ affine_project(
 \arguments{
 \item{model}{Affine model. E.g. for the Blackburn-Sherris model we have model="BS", and so on}
 
-\item{fact_dep}{Boolean parameter indicating whether estimate models with factor dependence (fact_dep=TRUE) or independence}
+\item{fact_dep}{Boolean parameter indicating whether estimate models with factor dependence (`fact_dep=TRUE`) or independence}
 
 \item{n_factors}{Number of factors. For some models, these are set by default}
 
@@ -33,6 +33,5 @@ A vector of the projected survival rates for each age
 Projected survival curves and average mortality rates over n years ahead projections
 }
 \examples{
-data(toydata)
-output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+BSd_3F_proj <- affine_project(model="BS", fact_dep=TRUE, n_factors=3, parameters=pe_BSd_3F$fit$par_est, data=mu_bar, years_proj = 1)
 }

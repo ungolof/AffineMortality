@@ -33,7 +33,7 @@
 #' \item{BIC}{ Value of the Bayesian Information Criterion of the model}
 
 #' @examples
-#' # - Estimation of the Blackburn-Sherris model with three dependent factors
+#' Estimation of the Blackburn-Sherris model with three dependent factors
 #' data(mu_bar) # - load the age-cohort US dataset of males aged 50-99 born between 1883 and 1915, and load the default starting values (`sv_default`)
 #' starting_values <- sv_default$BSd # - list of default starting values as provided by the package
 #' pe_BSd_3F <- affine_fit(model="BS", fact_dep=TRUE, n_factors=3, data=mu_bar, st_val=starting_values, max_iter=5, tolerance=0.1, wd="working_folder_directory")
@@ -122,7 +122,7 @@ affine_fit <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "
 #' \item{S_t_c.}{ Covariance matrix of the latent process X(t) for the prediction step}
 
 #' @examples
-#' # - Estimation of mean and variance of the latent process for the update and prediction step for the Blackburn-Sherris model with three dependent factors
+#' Estimation of mean and variance of the latent process for the update and prediction step for the Blackburn-Sherris model with three dependent factors
 #' X_filtered <- xfilter(model="BS", fact_dep=TRUE, n_factors=3, parameters=pe_BSd_3F$fit$par_est, data=mu_bar)
 
 #' @export

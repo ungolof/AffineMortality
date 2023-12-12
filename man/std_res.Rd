@@ -30,6 +30,5 @@ Matrix with the standardized residuals given model and parameters.
 Function returning the standardized residuals using the method of Ungolo et. al. (2023)
 }
 \examples{
-data(toydata)
-output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+std_resid <- std_res(model="BS", fact_dep=TRUE, n_factors=3, parameters=pe_BSd_3F$fit$par_est, data=mu_bar)
 }

@@ -7,15 +7,9 @@
 xsmooth(filterobject, kappa)
 }
 \arguments{
+\item{filterobject}{A `xfilter` object}
+
 \item{kappa}{parameter kappa from the real-world dynamics of the latent variables}
-
-\item{X_t}{Mean of the filtered latent process X(t) at the time-update step (X_t from the filtering process)}
-
-\item{X_t_c}{Mean of the filtered latent process X(t) at the prediction step (X_t_c from the filtering process)}
-
-\item{S_t}{Covariance of the filtered latent process X(t) at the time-update step (S_t from the filtering process)}
-
-\item{S_t_c}{Covariance of the filtered latent process X(t) at the prediction step (S_t_c from the filtering process)}
 }
 \value{
 List with mean `X_t_sm` and covariance `S_t_sm` of the distribution of the latent process X(t)
@@ -24,6 +18,5 @@ List with mean `X_t_sm` and covariance `S_t_sm` of the distribution of the laten
 Estimation of mean and covariance of the distribution of the smoothed latent process X(t) using the Rauch-Tung-Striebel procedure
 }
 \examples{
-data(toydata)
-output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+X_smoothed <- xsmooth(filterobject=X_filtered, kappa=pe_BSd_3F$fit$par_est$kappa)
 }

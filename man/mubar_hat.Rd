@@ -30,6 +30,5 @@ Matrix with the fitted `mu_bar` rates given model and parameters
 Function returning the fitted values of the average mortality rates
 }
 \examples{
-data(toydata)
-output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+fitted_BSd <- mubar_hat(model="BS", fact_dep=TRUE, n_factors=3, parameters=pe_BSd_3F$fit$par_est, data=mu_bar)
 }

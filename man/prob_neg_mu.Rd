@@ -25,9 +25,9 @@ prob_neg_mu(
 
 \item{data}{Table with the average mortality rates}
 
-\item{years_proj}{Number of years of ahead-projected rates}
+\item{years_proj}{Number of years of ahead-projected rates (default 1 year)}
 
-\item{n_simulations}{Number of simulations}
+\item{n_simulations}{Number of simulations (default value 100000)}
 }
 \value{
 A vector of probabilities of negative rates for each age considered in the dataset.
@@ -36,6 +36,5 @@ A vector of probabilities of negative rates for each age considered in the datas
 Probability of negative rates when projected over `n` years, based on simulated values of the latent variables
 }
 \examples{
-data(toydata)
-output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+neg_mu_p <- prob_neg_mu(model="BS", fact_dep=TRUE, n_factors=3, parameters=pe_BSd_3F$fit$par_est, data=mu_bar, years_proj = 10, n_simulations=1000)
 }

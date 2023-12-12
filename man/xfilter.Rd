@@ -34,6 +34,6 @@ A list with the following components:
 Estimation of mean and variance of the latent states using the univariate Kalman filtering procedure of Koopman and Durbin (2000)
 }
 \examples{
-data(toydata)
-output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+Estimation of mean and variance of the latent process for the update and prediction step for the Blackburn-Sherris model with three dependent factors
+X_filtered <- xfilter(model="BS", fact_dep=TRUE, n_factors=3, parameters=pe_BSd_3F$fit$par_est, data=mu_bar)
 }

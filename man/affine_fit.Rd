@@ -35,7 +35,7 @@ affine_fit(
 \value{
 A list with components:
 \item{model}{ Name of the model}
-\item{fit}{ List with parameter estimates, log-likelihood function value, and table of their value at each iteration}
+\item{fit}{ List with parameter estimates `par_est`, log-likelihood function value `log_lik`, and table of their value at each iteration `CA_table`}
 \item{n.parameters}{ Number of parameters of the model}
 \item{AIC}{ Value of the Akaike Information Criterion of the model}
 \item{BIC}{ Value of the Bayesian Information Criterion of the model}
@@ -44,6 +44,8 @@ A list with components:
 Estimation of the parameters of affine mortality models using the gradient-free Nelder-Mead algorithm for groups of parameters.
 }
 \examples{
-data(toydata)
-output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+Estimation of the Blackburn-Sherris model with three dependent factors
+data(mu_bar) # - load the age-cohort US dataset of males aged 50-99 born between 1883 and 1915, and load the default starting values (`sv_default`)
+starting_values <- sv_default$BSd # - list of default starting values as provided by the package
+pe_BSd_3F <- affine_fit(model="BS", fact_dep=TRUE, n_factors=3, data=mu_bar, st_val=starting_values, max_iter=5, tolerance=0.1, wd="working_folder_directory")
 }
