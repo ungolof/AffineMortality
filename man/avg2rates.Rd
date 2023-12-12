@@ -16,6 +16,5 @@ Returns a matrix of the same dimension as mu_bar with mortality rates
 Converts a table with average mortality rates into mortality rates
 }
 \examples{
-data(toydata)
-output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+mu_bar_rates <- avg2rates(mu_bar)
 }

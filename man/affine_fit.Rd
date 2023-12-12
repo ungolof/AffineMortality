@@ -44,7 +44,6 @@ A list with components:
 Estimation of the parameters of affine mortality models using the gradient-free Nelder-Mead algorithm for groups of parameters.
 }
 \examples{
-Estimation of the Blackburn-Sherris model with three dependent factors
 data(mu_bar) # - load the age-cohort US dataset of males aged 50-99 born between 1883 and 1915, and load the default starting values (`sv_default`)
 starting_values <- sv_default$BSd # - list of default starting values as provided by the package
 pe_BSd_3F <- affine_fit(model="BS", fact_dep=TRUE, n_factors=3, data=mu_bar, st_val=starting_values, max_iter=5, tolerance=0.1, wd="working_folder_directory")

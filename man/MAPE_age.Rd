@@ -18,6 +18,5 @@ Returns a vector with the Mean Absolute Percentage Error by age
 Calculation of the Mean Absolute Percentage Error by age (i.e. by each row of the average mortality table)
 }
 \examples{
-data(toydata)
-output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+MAPE_age(mu_bar, fitted_BSd)
 }

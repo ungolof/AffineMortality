@@ -12,12 +12,12 @@ heatmap_res(residuals, color = TRUE)
 \item{color}{TRUE if colored (default) or FALSE if black and white}
 }
 \value{
-A heatmap of the residuals
+Plot of the residuals heatmap
 }
 \description{
 Returns the heatmaps created by using heatmaply
 }
 \examples{
-data(toydata)
-output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+std_resid <- std_res(model="AFNS", fact_dep=FALSE, parameters=pe_AFNSi$fit$par_est, data=mu_bar) # - Create standardized residuals
+heatmap_res(residuals=std_resid, color=FALSE) # - Get plot
 }

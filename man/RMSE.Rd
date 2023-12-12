@@ -18,6 +18,5 @@ Returns a scalar denoting the Root Mean Squared Error from the fitted model
 Calculation of the Root Mean Squared Error
 }
 \examples{
-data(toydata)
-output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+RMSE(mu_bar, fitted_BSd)
 }

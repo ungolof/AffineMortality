@@ -5,7 +5,7 @@
 \title{par_cov}
 \usage{
 par_cov(
-  method = c("MI", "BS"),
+  method = c("MI", "Bootstrap"),
   model = c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"),
   fact_dep = c(FALSE, TRUE),
   n_factors = 3,
@@ -51,6 +51,5 @@ A list with the covariance matrix of the parameter estimates `Cov_par_est` and t
 Estimation of the uncertainty of the parameters by Bootstrap or Multiple imputation
 }
 \examples{
-data(toydata)
-output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+par_unc_MI <- par_cov(method="MI", model="Bootstrap", fact_dep=TRUE, n_factors=3, parameters=pe_BSd_3F$fit$par_est, data=mu_bar, D_se=5, max_iter=10, tolerance=0.1)
 }
