@@ -1743,7 +1743,7 @@ CovEst_BS_CIR <- function(x0, delta, kappa, sigma, theta_P, r, mu_bar, n_BS=500,
       save(par_table[1:i,], "CIRBS_Table.RData")
     }
 
-    print(paste(i, "% Bootstrap estimate"))
+    print(paste("Bootstrap estimate ", i))
   }
 
   # 5) Get st. err. parameter estimates (unconstrained parameters)

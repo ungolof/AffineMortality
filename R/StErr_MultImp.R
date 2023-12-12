@@ -192,7 +192,7 @@ CovEst_MI_BSi <- function(x0, delta, kappa, sigma, r, mu_bar, D_se=50, max_it=20
 
     V_bar <- V_bar + MASS::ginv(hessian_comp) / D_se
     B_table[d,] <- c(p_opt_se$delta, p_opt_se$kappa, p_opt_se$l_sigma, p_opt_se$l_r)
-    print(paste(d, "% imputation"))
+    print(paste("Imputation ", d))
   }
 
   # - Step 4: Estimation of the covariance matrix of the parameters
@@ -465,7 +465,7 @@ CovEst_MI_BSd_3F <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar, D
 
     V_bar <- V_bar + MASS::ginv(hessian_comp) / D_se
     B_table[d,] <- c(p_opt_se$delta, p_opt_se$kappa, p_opt_se$dg_l_Sigma_chol, p_opt_se$odg_Sigma_chol, p_opt_se$l_r)
-    print(paste(d, "% imputation"))
+    print(paste("Imputation ", d))
   }
 
   # - Step 4: Estimation of the covariance matrix of the parameters
@@ -689,7 +689,7 @@ CovEst_MI_AFNSi <- function(x0, delta, kappa, sigma, r, mu_bar, D_se=50, max_it=
 
     V_bar <- V_bar + MASS::ginv(hessian_comp) / D_se
     B_table[d,] <- c(p_opt_se$delta, p_opt_se$kappa, p_opt_se$l_sigma, p_opt_se$l_r)
-    print(paste(d, "% imputation"))
+    print(paste("Imputation ", d))
   }
 
   # - Step 4: Estimation of the covariance matrix of the parameters
@@ -934,7 +934,7 @@ CovEst_MI_AFNSd <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar, D_
 
     V_bar <- V_bar + MASS::ginv(hessian_comp) / D_se
     B_table[d,] <- c(p_opt_se$delta, p_opt_se$kappa, p_opt_se$dg_l_Sigma_chol, p_opt_se$odg_Sigma_chol, p_opt_se$l_r)
-    print(paste(d, "% imputation"))
+    print(paste("Imputation ", d))
   }
 
   # - Step 4: Estimation of the covariance matrix of the parameters
@@ -1157,7 +1157,7 @@ CovEst_MI_AFGNSi <- function(x0, delta, kappa, sigma, r, mu_bar, D_se=50, max_it
 
     V_bar <- V_bar + MASS::ginv(hessian_comp) / D_se
     B_table[d,] <- c(p_opt_se$delta, p_opt_se$kappa, p_opt_se$l_sigma, p_opt_se$l_r)
-    print(paste(d, "% imputation"))
+    print(paste("Imputation ", d))
   }
 
   # - Step 4: Estimation of the covariance matrix of the parameters
@@ -1407,7 +1407,7 @@ CovEst_MI_AFGNSd <- function(x0, delta, kappa, sigma_dg, Sigma_cov, r, mu_bar, D
 
     V_bar <- V_bar + MASS::ginv(hessian_comp) / D_se
     B_table[d,] <- c(p_opt_se$delta, p_opt_se$kappa, p_opt_se$dg_l_Sigma_chol, p_opt_se$odg_Sigma_chol1, p_opt_se$odg_Sigma_chol2, p_opt_se$l_r)
-    print(paste(d, "% imputation"))
+    print(paste("Imputation ", d))
   }
 
   # - Step 4: Estimation of the covariance matrix of the parameters
