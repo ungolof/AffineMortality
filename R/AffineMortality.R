@@ -27,14 +27,17 @@
 #'
 #' @return A list with components:
 #' \item{model}{ Name of the model}
-#' \item{fit}{ List with parameter estimates, log-likelihood function value, and table of their value at each iteration}
+#' \item{fit}{ List with parameter estimates `par_est`, log-likelihood function value `log_lik`, and table of their value at each iteration `CA_table`}
 #' \item{n.parameters}{ Number of parameters of the model}
 #' \item{AIC}{ Value of the Akaike Information Criterion of the model}
 #' \item{BIC}{ Value of the Bayesian Information Criterion of the model}
 
 #' @examples
-#' data(toydata)
-#' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+#' # - Estimation of the Blackburn-Sherris model with three dependent factors
+#' data(mu_bar) # - load the age-cohort US dataset of males aged 50-99 born between 1883 and 1915, and load the default starting values (`sv_default`)
+#' starting_values <- sv_default$BSd # - list of default starting values as provided by the package
+#' pe_BSd_3F <- affine_fit(model="BS", fact_dep=TRUE, n_factors=3, data=mu_bar, st_val=starting_values, max_iter=5, tolerance=0.1, wd="working_folder_directory")
+
 #' @export
 affine_fit <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"), fact_dep=c(FALSE, TRUE), n_factors=3, data, st_val, max_iter=200, tolerance=0.1, wd=0){
 
@@ -119,8 +122,9 @@ affine_fit <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "
 #' \item{S_t_c.}{ Covariance matrix of the latent process X(t) for the prediction step}
 
 #' @examples
-#' data(toydata)
-#' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+#' # - Estimation of mean and variance of the latent process for the update and prediction step for the Blackburn-Sherris model with three dependent factors
+#' X_filtered <- xfilter(model="BS", fact_dep=TRUE, n_factors=3, parameters=pe_BSd_3F$fit$par_est, data=mu_bar)
+
 #' @export
 xfilter <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"), fact_dep=c(FALSE, TRUE), n_factors=3, parameters, data){
   if(model=="AFNS"){
@@ -200,16 +204,13 @@ xfilter <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk
 #'
 #' @description Estimation of mean and covariance of the distribution of the smoothed latent process X(t) using the Rauch-Tung-Striebel procedure
 #'
-#' @param X_t Mean of the filtered latent process X(t) at the time-update step (X_t from the filtering process)
-#' @param X_t_c Mean of the filtered latent process X(t) at the prediction step (X_t_c from the filtering process)
-#' @param S_t Covariance of the filtered latent process X(t) at the time-update step (S_t from the filtering process)
-#' @param S_t_c Covariance of the filtered latent process X(t) at the prediction step (S_t_c from the filtering process)
+#' @param filterobject A `xfilter` object
 #' @param kappa parameter kappa from the real-world dynamics of the latent variables
 #'
 #' @return List with mean `X_t_sm` and covariance `S_t_sm` of the distribution of the latent process X(t)
 #' @examples
-#' data(toydata)
-#' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+#' X_smoothed <- xsmooth(filterobject=X_filtered, kappa=pe_BSd_3F$fit$par_est$kappa)
+
 #' @export
 xsmooth <- function(filterobject, kappa){
   smooth <- RTS_sm_bas(filterobject$X_t, filterobject$X_t_c, filterobject$S_t, filterobject$S_t_c, kappa, (ncol(filterobject$X_t)-1))
@@ -231,8 +232,8 @@ xsmooth <- function(filterobject, kappa){
 #'
 #' @return Matrix with the fitted `mu_bar` rates given model and parameters
 #' @examples
-#' data(toydata)
-#' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+#' fitted_BSd <- mubar_hat(model="BS", fact_dep=TRUE, n_factors=3, parameters=pe_BSd_3F$fit$par_est, data=mu_bar)
+
 #' @export
 mubar_hat <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"), fact_dep=c(FALSE, TRUE), n_factors=3, parameters, data){
   if(model=="AFNS"){
@@ -318,8 +319,8 @@ mubar_hat <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "G
 #'
 #' @return Matrix with the standardized residuals given model and parameters.
 #' @examples
-#' data(toydata)
-#' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+#' std_resid <- std_res(model="BS", fact_dep=TRUE, n_factors=3, parameters=pe_BSd_3F$fit$par_est, data=mu_bar)
+
 #' @export
 std_res <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"), fact_dep=c(FALSE, TRUE), n_factors=3, parameters, data){
   if(model=="AFNS"){
@@ -401,13 +402,13 @@ std_res <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk
 #' @param n_factors Number of factors. For some models, these are set by default
 #' @param parameters Starting value for the parameters. If not set, then default values will be used
 #' @param data Table with the average mortality rates
-#' @param years_proj Number of years of ahead-projected rates
-#' @param n_simulations Number of simulations
+#' @param years_proj Number of years of ahead-projected rates (default 1 year)
+#' @param n_simulations Number of simulations (default value 100000)
 #'
 #' @return A vector of probabilities of negative rates for each age considered in the dataset.
 #' @examples
-#' data(toydata)
-#' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+#' neg_mu_p <- prob_neg_mu(model="BS", fact_dep=TRUE, n_factors=3, parameters=pe_BSd_3F$fit$par_est, data=mu_bar, years_proj = 10, n_simulations=1000)
+
 #' @export
 prob_neg_mu <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"), fact_dep=c(FALSE, TRUE), n_factors=3, parameters, data, years_proj=1, n_simulations=100000){
   if(model=="AFNS"){
@@ -498,8 +499,8 @@ prob_neg_mu <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", 
 #'
 #' @return A vector of the projected survival rates for each age
 #' @examples
-#' data(toydata)
-#' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+#' BSd_3F_proj <- affine_project(model="BS", fact_dep=TRUE, n_factors=3, parameters=pe_BSd_3F$fit$par_est, data=mu_bar, years_proj = 1)
+
 #' @export
 affine_project <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"), fact_dep=c(FALSE, TRUE), n_factors=3, parameters, data, years_proj=1){
   if(model=="AFNS"){
