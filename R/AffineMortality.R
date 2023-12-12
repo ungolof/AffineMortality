@@ -33,7 +33,6 @@
 #' \item{BIC}{ Value of the Bayesian Information Criterion of the model}
 
 #' @examples
-#' Estimation of the Blackburn-Sherris model with three dependent factors
 #' data(mu_bar) # - load the age-cohort US dataset of males aged 50-99 born between 1883 and 1915, and load the default starting values (`sv_default`)
 #' starting_values <- sv_default$BSd # - list of default starting values as provided by the package
 #' pe_BSd_3F <- affine_fit(model="BS", fact_dep=TRUE, n_factors=3, data=mu_bar, st_val=starting_values, max_iter=5, tolerance=0.1, wd="working_folder_directory")
@@ -122,7 +121,6 @@ affine_fit <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "
 #' \item{S_t_c.}{ Covariance matrix of the latent process X(t) for the prediction step}
 
 #' @examples
-#' Estimation of mean and variance of the latent process for the update and prediction step for the Blackburn-Sherris model with three dependent factors
 #' X_filtered <- xfilter(model="BS", fact_dep=TRUE, n_factors=3, parameters=pe_BSd_3F$fit$par_est, data=mu_bar)
 
 #' @export
@@ -586,10 +584,11 @@ affine_project <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR
 #' @param residuals Table of residuals obtainable using std.res
 #' @param color TRUE if colored (default) or FALSE if black and white
 #'
-#' @return A heatmap of the residuals
+#' @return Plot of the residuals heatmap
 #' @examples
-#' data(toydata)
-#' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+#' std_resid <- std_res(model="AFNS", fact_dep=FALSE, parameters=pe_AFNSi$fit$par_est, data=mu_bar) # - Get matrix of standardized residuals
+#' heatmap_res(residuals=std_resid, color=FALSE)
+
 #' @export
 heatmap_res <- function(residuals, color=TRUE){
   if(color==FALSE){
@@ -621,10 +620,10 @@ heatmap_res <- function(residuals, color=TRUE){
 #'
 #' @return A list with the covariance matrix of the parameter estimates `Cov_par_est` and their standard errors `St_err`
 #' @examples
-#' data(toydata)
-#' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+#' par_unc_MI <- par_cov(method="MI", model="BS", fact_dep=TRUE, n_factors=3, parameters=pe_BSd_3F$fit$par_est, data=mu_bar, D_se=5, max_iter=10, tolerance=0.1)
+
 #' @export
-par_cov <- function(method=c("MI", 'BS'), model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"), fact_dep=c(FALSE, TRUE), n_factors=3, parameters, data, D_se=50, BS_s=500, t_excl=4, max_iter=200, tolerance=0.1, wd=0){
+par_cov <- function(method=c("MI", 'Bootstrap'), model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"), fact_dep=c(FALSE, TRUE), n_factors=3, parameters, data, D_se=50, BS_s=500, t_excl=4, max_iter=200, tolerance=0.1, wd=0){
 
   if(method=="MI"){
     if(model=="AFNS"){
@@ -807,10 +806,9 @@ par_cov <- function(method=c("MI", 'BS'), model=c("BS", "AFNS", "AFGNS", "AFUNS"
 #'
 #' @return Returns a scalar denoting the Root Mean Squared Error from the fitted model
 #' @examples
-#' data(toydata)
-#' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
-#' @export
+#' RMSE(mu_bar, fitted_BSd)
 
+#' @export
 RMSE <- function(observed, estimated){
   RMSE <- sqrt(mean((observed - estimated)^2))
   return(RMSE)
@@ -830,8 +828,8 @@ RMSE <- function(observed, estimated){
 #'
 #' @return Returns a vector with the Mean Absolute Percentage Error by age
 #' @examples
-#' data(toydata)
-#' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+#' MAPE_age(mu_bar, fitted_BSd)
+
 #' @export
 MAPE_age <- function(observed, estimated){
   MAPE <- rowMeans(abs((observed - estimated)/observed))
@@ -848,8 +846,8 @@ MAPE_age <- function(observed, estimated){
 #'
 #' @return Returns a matrix with 0-1 residuals by age and year
 #' @examples
-#' data(toydata)
-#' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+#' residuals_01(mu_bar, fitted_BSd)
+
 #' @export
 residuals_01 <- function(observed, estimated){
   residuals <- ifelse(observed - estimated > 0, 1, 0)
@@ -866,8 +864,8 @@ residuals_01 <- function(observed, estimated){
 #'
 #' @return Returns a matrix of the same dimension as mu_bar with mortality rates
 #' @examples
-#' data(toydata)
-#' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+#' mu_rates <- avg2rates(mu_bar)
+
 #' @export
 avg2rates <- function(mu_bar){
   mu <- mu_bar
@@ -885,8 +883,8 @@ avg2rates <- function(mu_bar){
 #'
 #' @return Returns a matrix of the same dimension as mu with average mortality rates
 #' @examples
-#' data(toydata)
-#' output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+#' mu_bar <- rates2avg(mu_rates)
+
 #' @export
 rates2avg <- function(mu){
   mu_bar <- mu
