@@ -586,8 +586,7 @@ affine_project <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR
 #'
 #' @return Plot of the residuals heatmap
 #' @examples
-#' std_resid <- std_res(model="AFNS", fact_dep=FALSE, parameters=pe_AFNSi$fit$par_est, data=mu_bar) # - Get matrix of standardized residuals
-#' heatmap_res(residuals=std_resid, color=FALSE)
+#' bcs
 
 #' @export
 heatmap_res <- function(residuals, color=TRUE){
@@ -620,7 +619,7 @@ heatmap_res <- function(residuals, color=TRUE){
 #'
 #' @return A list with the covariance matrix of the parameter estimates `Cov_par_est` and their standard errors `St_err`
 #' @examples
-#' par_unc_MI <- par_cov(method="MI", model="BS", fact_dep=TRUE, n_factors=3, parameters=pe_BSd_3F$fit$par_est, data=mu_bar, D_se=5, max_iter=10, tolerance=0.1)
+#' bac
 
 #' @export
 par_cov <- function(method=c("MI", 'Bootstrap'), model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", "GMk"), fact_dep=c(FALSE, TRUE), n_factors=3, parameters, data, D_se=50, BS_s=500, t_excl=4, max_iter=200, tolerance=0.1, wd=0){
@@ -806,7 +805,7 @@ par_cov <- function(method=c("MI", 'Bootstrap'), model=c("BS", "AFNS", "AFGNS", 
 #'
 #' @return Returns a scalar denoting the Root Mean Squared Error from the fitted model
 #' @examples
-#' RMSE(mu_bar, fitted_BSd)
+#' abc
 
 #' @export
 RMSE <- function(observed, estimated){
@@ -828,7 +827,7 @@ RMSE <- function(observed, estimated){
 #'
 #' @return Returns a vector with the Mean Absolute Percentage Error by age
 #' @examples
-#' MAPE_age(mu_bar, fitted_BSd)
+#' abc
 
 #' @export
 MAPE_age <- function(observed, estimated){
@@ -846,7 +845,7 @@ MAPE_age <- function(observed, estimated){
 #'
 #' @return Returns a matrix with 0-1 residuals by age and year
 #' @examples
-#' residuals_01(mu_bar, fitted_BSd)
+#' abc
 
 #' @export
 residuals_01 <- function(observed, estimated){
@@ -864,7 +863,7 @@ residuals_01 <- function(observed, estimated){
 #'
 #' @return Returns a matrix of the same dimension as mu_bar with mortality rates
 #' @examples
-#' mu_rates <- avg2rates(mu_bar)
+#' abc
 
 #' @export
 avg2rates <- function(mu_bar){
@@ -883,7 +882,7 @@ avg2rates <- function(mu_bar){
 #'
 #' @return Returns a matrix of the same dimension as mu with average mortality rates
 #' @examples
-#' mu_bar <- rates2avg(mu_rates)
+#' abc
 
 #' @export
 rates2avg <- function(mu){
