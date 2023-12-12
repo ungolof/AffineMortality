@@ -16,6 +16,5 @@ Returns a matrix of the same dimension as mu with average mortality rates
 Converts a table with mortality rates into average mortality rates for use in estimation of affine mortality models
 }
 \examples{
-data(toydata)
-output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+mu_bar_rates <- rates2avg(mu_rates)
 }

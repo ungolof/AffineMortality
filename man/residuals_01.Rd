@@ -18,6 +18,5 @@ Returns a matrix with 0-1 residuals by age and year
 Computation of the positive (1) and negative (0) residuals. Useful to understand the presence of the patterns within the residuals
 }
 \examples{
-data(toydata)
-output_table <- overview_tab(dat = toydata, id = ccode, time = year)
+residuals_01(mu_bar, fitted_BSd)
 }
