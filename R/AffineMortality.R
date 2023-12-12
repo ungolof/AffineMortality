@@ -491,7 +491,7 @@ prob_neg_mu <- function(model=c("BS", "AFNS", "AFGNS", "AFUNS", "AFRNS", "CIR", 
 #' @description Projected survival curves and average mortality rates over n years ahead projections
 #'
 #' @param model Affine model. E.g. for the Blackburn-Sherris model we have model="BS", and so on
-#' @param fact_dep Boolean parameter indicating whether estimate models with factor dependence (fact_dep=TRUE) or independence
+#' @param fact_dep Boolean parameter indicating whether estimate models with factor dependence (`fact_dep=TRUE`) or independence
 #' @param n_factors Number of factors. For some models, these are set by default
 #' @param parameters Starting value for the parameters. If not set, then default values will be used
 #' @param data Table with the average mortality rates
