@@ -605,7 +605,7 @@ heatmap_res <- function(residuals, color=TRUE){
 #'
 #' @description Estimation of the uncertainty of the parameters by Bootstrap or Multiple imputation
 #'
-#' @param method MI if Multiple Imputation or Bootstrap if the Bootstrap is desired
+#' @param method `MI` if Multiple Imputation or `Bootstrap` if the Bootstrap is desired
 #' @param model Affine model. E.g. for the Blackburn-Sherris model we have model="BS", and so on
 #' @param fact_dep Boolean parameter indicating whether estimate models with factor dependence (fact_dep=TRUE) or independence (fact_dep=FALSE)
 #' @param n_factors Number of factors. For some models, these are set by default
