@@ -125,8 +125,8 @@ mu_bar_hat_GMki <- function(x0, delta, kappa, gamma, sigma, r, mu_bar){
   B_tT <- matrix(NA, n_ages, n_factors)
 
   for(age in 1:n_ages){    # - scroll over the ages
-    A_tT[age,1] <- A_GMki(age, exp(l_sigma), delta, exp(l_gamma))####### A_ind(age, exp(l_sigma), delta)
-    B_tT[age,] <- B_GMki(age, delta, exp(l_gamma))  ###### B_ind(age,delta)
+    A_tT[age,1] <- A_GMki(age, sigma, delta, gamma)####### A_ind(age, exp(l_sigma), delta)
+    B_tT[age,] <- B_GMki(age, delta, gamma)  ###### B_ind(age,delta)
   }
 
   for(t in 1:n_years){
